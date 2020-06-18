@@ -1,0 +1,82 @@
+﻿<root Text="打印设置">
+  <Controls Name="button2" Text="取消" />
+  <Controls Name="button1" Text="确定" />
+  <Controls Name="tabControl1" Text="">
+    <Controls Name="tabPage1" Text="页面">
+      <Controls Name="label17" Text="纸张大小(&amp;Z)" />
+      <Controls Name="paperSz" Text="A4" />
+      <Controls Name="groupBox2" Text="缩放">
+        <Controls Name="label3" Text="页高" />
+        <Controls Name="label2" Text="页宽" />
+        <Controls Name="label1" Text="% 正常尺寸" />
+        <Controls Name="fitTo" Text="调整为(&amp;F)" />
+        <Controls Name="adjustTo" Text="缩放比例(&amp;A)" />
+      </Controls>
+      <Controls Name="groupBox1" Text="方向">
+        <Controls Name="landscape" Text="横向(&amp;L)" />
+        <Controls Name="portrait" Text="纵向(&amp;T)" />
+      </Controls>
+    </Controls>
+    <Controls Name="tabPage2" Text="页边距">
+      <Controls Name="preview" Text="打印预览(&amp;W)" />
+      <Controls Name="print" Text="打印(&amp;P)" />
+      <Controls Name="groupBox4" Text="边距">
+        <Controls Name="label9" Text="页脚(&amp;F)" />
+        <Controls Name="label8" Text="页眉(&amp;A)" />
+        <Controls Name="label7" Text="下(&amp;B)" />
+        <Controls Name="label6" Text="上(&amp;T)" />
+        <Controls Name="label5" Text="右(&amp;R)" />
+        <Controls Name="label4" Text="左(&amp;L)" />
+      </Controls>
+      <Controls Name="groupBox3" Text="居中方式">
+        <Controls Name="centerVert" Text="垂直居中(&amp;V)" />
+        <Controls Name="centerHoriz" Text="水平居中(&amp;H)" />
+      </Controls>
+    </Controls>
+    <Controls Name="tabPage3" Text="页眉 / 页脚">
+      <Controls Name="groupBox9" Text="设置">
+        <Controls Name="label20" Text="&amp;右" />
+        <Controls Name="label19" Text="&amp;中" />
+        <Controls Name="label18" Text="&amp;左" />
+      </Controls>
+      <Controls Name="label21" Text="打印预览" />
+      <Controls Name="panel1" Text="" />
+      <Controls Name="footerBtn" Text="&amp;页脚" />
+      <Controls Name="headerBtn" Text="&amp;页眉" />
+      <Controls Name="longDateBtn" Text="" />
+      <Controls Name="longTimeBtn" Text="" />
+      <Controls Name="imageBtn" Text="" />
+      <Controls Name="timeBtn" Text="" />
+      <Controls Name="dateBtn" Text="" />
+      <Controls Name="pagesBtn" Text="" />
+      <Controls Name="pageBtn" Text="" />
+      <Controls Name="colorBtn" Text="" />
+      <Controls Name="fontBtn" Text="" />
+    </Controls>
+    <Controls Name="tabPage4" Text="工作表">
+      <Controls Name="groupBox8" Text="打印顺序">
+        <Controls Name="pageOrderOver" Text="Over, then &amp;down" />
+        <Controls Name="pageOrderDown" Text="Down, then o&amp;ver" />
+      </Controls>
+      <Controls Name="groupBox7" Text="打印">
+        <Controls Name="printColumnHeaders" Text="打印列标题" />
+        <Controls Name="label16" Text="批注" />
+        <Controls Name="printRowHeaders" Text="打印行标题" />
+        <Controls Name="printBW" Text="单色打印" />
+        <Controls Name="printGridlines" Text="打印网格线" />
+      </Controls>
+      <Controls Name="groupBox6" Text="打印标题">
+        <Controls Name="label15" Text="结束列:" />
+        <Controls Name="label14" Text="起始列:" />
+        <Controls Name="label13" Text="结束行" />
+        <Controls Name="label12" Text="起始行" />
+        <Controls Name="label11" Text="左边标题列:" />
+        <Controls Name="label10" Text="顶端标题行:" />
+      </Controls>
+      <Controls Name="groupBox5" Text="打印区域">
+        <Controls Name="printSelected" Text="选择的区域" />
+        <Controls Name="printAll" Text="全部" />
+      </Controls>
+    </Controls>
+  </Controls>
+</root>

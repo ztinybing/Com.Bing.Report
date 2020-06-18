@@ -1,0 +1,607 @@
+[DESIGN]
+d001=0
+d001001=主要工程量汇总表,101,140,204,143,2,2.25,0,宋体,-9,0,0,1.0,1.5
+d002=20
+d0020001=col1
+d0020002=col2
+d0020003=col3
+d0020004=col4
+d0020005=col5
+d0020006=col6
+d0020007=col7
+d0020008=col8
+d0020009=col9
+d0020010=col10
+d0020011=col11
+d0020012=col12
+d0020013=col13
+d0020014=col14
+d0020015=col15
+d0020016=col16
+d0020017=col17
+d0020018=col18
+d0020019=col19
+d0020020=col20
+d003=20
+d0030001=col1,40,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材一
+d0030002=col2,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材二
+d0030003=col3,60,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材三
+d0030004=col4,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材四
+d0030005=col5,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材五
+d0030006=col6,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材六
+d0030007=col7,40,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材七
+d0030008=col8,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材八
+d0030009=col9,60,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材九
+d0030010=col10,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材十
+d0030011=col11,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十一
+d0030012=col12,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十二
+d0030013=col13,40,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十三
+d0030014=col14,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材十四
+d0030015=col15,60,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十五
+d0030016=col16,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材十六
+d0030017=col17,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十七
+d0030018=col18,80,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十八
+d0030019=col19,40,,,400,0,0,0,0,,1,2,1,1,1,1,0,1,0,1,,,主材十九
+d0030020=col20,80,,,400,0,0,0,0,,1,2,1,1,1,1,1,1,0,1,,,主材二十
+d0040001=4
+d00400010001=0
+d00400010002=1
+d00400010003=1
+d00400010004=1
+d0040002=0
+d0040003=1
+d0040004=0
+d0040005=1
+d00400050001=1
+d005=5
+d0050001=1,1,1,6,2,主要工程量汇总表,,-18,700,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+d0050002=1,1,3,6,3,,,,,,,,,16777215,1,2,0,0,0,0,0,0,0,1,0,0
+d0050003=1,1,4,6,4,项目编号：[micro_xmbh]                            项目名称：[micro_xmmc]                              项目单位：[micro_xmdw],,,,,,,,16777215,0,2,0,0,0,0,0,0,0,1,0,0
+d0050004=5,1,1,6,1,[pageno],,-11,,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+
+[DATA]
+call djfx()
+[/DATA]
+
+[SQL]
+alter procedure
+qssldl.djfx()
+begin
+  declare ls_point varchar(4); //当前正在处理的工料机类型
+  declare li_rg integer; //某定额人工已经有几条
+  declare li_cl integer; //某定额材料已经有几条
+  declare li_jx integer; //某定额机械已经有几条
+  
+  declare li_qt integer; //某定额其他费已经有几条
+  declare li_zc integer; //某定额其他费已经有几条
+   declare li_jc integer;
+  
+  declare i integer; //某定额人工已经有几条
+  declare k integer; //某定额材料已经有几条
+  declare ll_count integer; //某定额材料已经有几条
+  declare li_xmid integer;
+  declare li_fy integer;
+  declare li_dwbs integer;
+  declare li_dwbz1 integer;
+  declare ls_gcl varchar(16);
+  declare ls_sx varchar(4);
+  declare ls_cljc varchar(32);
+  declare ls_zhf varchar(32);
+  declare ls_mlid varchar(32);
+  declare ls_zhdj varchar(32);
+  declare ls_wjjcl varchar(32);
+  declare ls_sjrgf varchar(32);
+  declare ls_sjclf varchar(32);
+  declare ls_sjjxf varchar(32);
+  declare ls_sjjj varchar(32);
+  declare ls_temp long varchar;
+  declare ls_expand1 long varchar;
+  declare ls_expand11 long varchar;
+  declare ls_expand2 long varchar;
+  declare ls_expand3 long varchar;
+  declare ls_expand4 long varchar;
+  declare ls_expand5 long varchar;
+  declare ls_expand6 long varchar;
+  declare ls_expand1_ex long varchar;
+  declare ls_expand2_ex long varchar;
+  declare ls_expand3_ex long varchar;
+  declare ls_expand4_ex long varchar;
+  declare ls_expand5_ex long varchar;
+  declare ls_expand6_ex long varchar;
+  declare @fymc varchar(128);
+  declare @fyval varchar(64);
+  declare ls_qtfy long varchar;
+  declare ll_qfdh integer;
+  declare ls_dj varchar(12);
+  declare ls_rgf varchar(12);
+  declare ls_clf varchar(12);
+  declare ls_jxf varchar(12);
+  declare ls_zzclf varchar(12);
+  declare ls_qtzjf varchar(12);
+  declare ls_xcjf varchar(12);
+  declare ls_jjf varchar(12);
+  declare ls_qylr varchar(12);
+  declare ls_sj varchar(12);
+  declare ls_title long varchar;
+  declare ll_dexh integer;
+  declare ll_qd_num integer;
+  declare ll_qd_num1 integer;
+  declare cmlid varchar(128);
+  declare ls_djqd varchar(128);
+  declare ls_djqd_ori varchar(128);
+  declare cmlid1 long varchar;
+  declare cmlid2 long varchar;
+  declare cmlid3 long varchar;
+  declare ll_rg_xh integer;
+  declare ll_cl_xh integer;
+  declare ll_jx_xh integer;
+  declare ll_jc_xh integer;
+  
+  declare ll_qt_xh integer;
+  declare ll_zzxclf_xh integer;
+  
+  declare ll_flag integer;
+  declare ll_rg_SPACE integer;
+  declare ll_cl_SPACE integer;
+  declare ll_jx_SPACE integer;
+  declare ll_jc_SPACE integer;
+  
+  declare ll_qt_SPACE integer;
+  declare ll_zzxclf_SPACE integer;
+  declare  ls_gxbh varchar(128);
+  declare ll_insert_hj_flag  integer;
+  declare ll_flag_dw  integer;
+ declare ls_de_sys varchar(32);
+  declare local temporary table temptab(
+    dexh integer null,
+    xh integer null default autoincrement,
+    col1 varchar(1) null default '',
+    col2 varchar(1) null default '',
+    col3 varchar(1) null default '',
+    col4 varchar(1) null default '',
+    col5 varchar(1) null default '',
+    col6 varchar(1) null default '',
+    xxx_flag integer not null default
+    0,
+    xxx_expand1_sx_ex long varchar null default '',
+    xxx_expand2_sx_ex long varchar null default '',
+    xxx_expand3_sx_ex long varchar null default '',
+    xxx_expand4_sx_ex long varchar null default '',
+    xxx_expand5_sx_ex long varchar null default '',
+    xxx_expand6_sx_ex long varchar null default '',
+    xxx_expand1 long varchar null default '',
+    xxx_expand2 long varchar null default '',
+    xxx_expand3 long varchar null default '',
+    xxx_expand4 long varchar null default '',
+    xxx_expand5 long varchar null default '',
+    xxx_expand6 long varchar null default '',
+    ) on commit delete rows;
+  declare local temporary table temptab1(
+    dexh integer null,
+    xh integer null default 0,
+    xh1 integer null default autoincrement,
+    col1 varchar(1) null default '',
+    col2 varchar(1) null default '',
+    col3 varchar(1) null default '',
+    col4 varchar(1) null default '',
+    col5 varchar(1) null default '',
+    col6 varchar(1) null default '',
+    xxx_flag integer not null default
+    0,
+    xxx_expand1_sx_ex long varchar null default '',
+    xxx_expand2_sx_ex long varchar null default '',
+    xxx_expand3_sx_ex long varchar null default '',
+    xxx_expand4_sx_ex long varchar null default '',
+    xxx_expand5_sx_ex long varchar null default '',
+    xxx_expand6_sx_ex long varchar null default '',
+    xxx_expand1 long varchar null default '',
+    xxx_expand2 long varchar null default '',
+    xxx_expand3 long varchar null default '',
+    xxx_expand4 long varchar null default '',
+    xxx_expand5 long varchar null default '',
+    xxx_expand6 long varchar null default '',
+    ) on commit delete rows;
+  set ll_dexh=0;
+  set cmlid=(select keyval from config where keyname = 'level_bm');
+  set cmlid=ifnull(cmlid,'',cmlid);
+  set cmlid=(select keyval from config where keyname = 'level_bm');
+  set cmlid=ifnull(cmlid,'',cmlid);
+  set ls_de_sys = (select keyval from config where keyname = 'de_sys');
+  set ls_de_sys = ifnull(ls_de_sys,'',ls_de_sys);
+
+  set cmlid1='';
+  set cmlid2='';
+  set cmlid3='';
+  set cmlid1="left"(cmlid,5)+'%';
+  select top 1 level_bm into cmlid2
+   from base_data where
+    locate(node_type,'node_type=机电设备安装工程') > 0 and level_bm like cmlid1; 
+  if cmlid2 ='' or cmlid2 is null then
+    select top 1 level_bm into cmlid2
+    from base_data where 
+    locate(node_type,'node_type=机电设备安装工程') > 0;
+  end if;
+
+if cmlid2 ='' or cmlid2 is null then
+	set cmlid2 = 'ZZZZZ';
+end if;
+
+  select top 1 level_bm into cmlid3
+   from base_data where
+    locate(node_type,'node_type=金属结构设备及安装工程') > 0 and level_bm like cmlid1; 
+  if cmlid3 ='' or  cmlid3 is null then
+    select top 1 level_bm into cmlid3
+    from base_data where 
+    locate(node_type,'node_type=金属结构设备及安装工程') > 0;
+  end if;
+
+if cmlid3 ='' or cmlid3 is null then
+	set cmlid3 = 'ZZZZZ';
+end if;
+  delete from #fyb_sl where bz = '不打印' or bz = '为0不打' and(fyval*1.0 = 0 or fyval is null);
+  select* into #temp1 from base_data where(LOCATE(level_bm,cmlid2) = 1 or LOCATE(level_bm,cmlid3) = 1) and rowtype = 0 and(node_bh = '' or node_bh is null) and(trim(sjjj1) <> '' and sjjj1 is not null);
+   
+   if (select count(*) from base_data where locate(node_type,'node_type=施工辅助工程') > 0)>0 then
+   	update #temp1 set bzmlid = 'D'+bzmlid where rowtype=0 and LOCATE(level_bm,cmlid2) = 1;
+   	update #temp1 set bzmlid = 'E'+bzmlid where rowtype=0 and LOCATE(level_bm,cmlid3) = 1;
+   else
+    
+   update #temp1 set bzmlid = 'B'+bzmlid where rowtype=0 and LOCATE(level_bm,cmlid2) = 1;
+   update #temp1 set bzmlid = 'C'+bzmlid where rowtype=0 and LOCATE(level_bm,cmlid3) = 1;
+  end if;
+  
+  select(if trim(a.clsx) = '' or a.clsx is null then '材料' else a.clsx
+    endif) as sx1,(if sx1 = '人工' then 1 else if sx1 = '机械' then 3 else if sx1='其他' then 4 else 2 endif endif endif) as sx2,
+    a.* into #gclclb1 from base_data as a where(a.rowtype = 2101 and yl1 <> '' and yl1 is not null) or(a.rowtype = 2601 and exists(select* from base_data as b where b.chandle = a.phandle and b.rowtype = 101    and exists(select* from base_data as c where c.chandle = b.phandle and c.rowtype = 100)             ) and a.gcl <> '' and a.gcl is not null) order by level_bm asc;
+  update #gclclb1 set dj = alltrim(dj);
+  update #gclclb1 set dj = alltrim(round( ((yl1*1.0)/(yl*1.0))*(dj*1.0),4)),yl1=yl where node_dw='%' and  yl is not null and   yl*1.0>0;
+  update #gclclb1 set sx2=5 where sx1='主材';
+  select(if trim(a.clsx) = '' or a.clsx is null then '材料' else a.clsx
+    endif) as sx1,(if sx1 = '人工' then 1 else if sx1 = '机械' then 3 else  if sx1='其他' then 4 else 2 endif endif endif) as sx2,a.* into #gclclb2
+    from base_data as a where  tzj<>'' and tzj is not null and  dj<>'' and dj is not null  and  (rowtype = 2101 or rowtype = 2601) and yl1 <> '' and yl1 is not null order by level_bm asc;
+  update #gclclb2 set dj = alltrim(dj);
+  update  #gclclb1 set clbm='' where clbm is null;
+ update  #gclclb2 set clbm='' where clbm is null;
+ 
+ update  #gclclb1 set clbm='ZZZZZZ' where node_dw='%';
+ update  #gclclb2 set clbm='ZZZZZZ' where node_dw='%';
+ select * into #tempa from base_data where rowtype<=101;
+  select * into #tempb from base_data where rowtype=0;
+ 	update #tempa set node_bh=primary_deh where rowtype=100;
+  update #tempa set node_bh=SUBSTR(node_bh,PATINDEX('%[ 0,1,2,3,4,5,6,7,8,9 ]%',node_bh)) where rowtype>0 and RIGHT( node_bh ,6) <> '(借用)';
+  update #tempa a set a.gcl= (select alltrim(b.gcl*a.gcl) from #tempa b where a.phandle=b.chandle) where a.rowtype=101;
+  update #tempa a set a.hssm= (select b.hssm from #tempa b where a.phandle=b.chandle) where a.rowtype=101;
+  for loop1 as cur dynamic scroll cursor for
+    select dwbz as dwbz1,ifnull(bzmlid,'',bzmlid) as bzmlid,jfxs,gcl as qdgcl,mc2 as gzlr,node_dw as xmdw,level_bm as mlid,node_mc as node_mc1,chandle as chandle1,phandle as phandle1,qflbdh as qflbdh1,sjqtf as sjqtf1,markflag from #temp1 order by level_bm asc do
+    set ls_gxbh = '';
+    if  markflag = 1 then
+	    for loop51 as cur51 dynamic scroll cursor for
+	    select bzmlid as gxbh from #temp1 where node_id1= chandle1 order by level_bm do
+	    set ls_gxbh=ls_gxbh+'|'+gxbh;
+	    end for;
+    end if;
+    set dwbz1=(if dwbz1 = 0 or dwbz1 is null then 1 else dwbz1 endif);
+    set ll_flag=0;
+    set ll_insert_hj_flag = 0;
+    if not( qflbdh1 is null) then
+      set qdgcl=alltrim(qdgcl);
+      set qdgcl=(if qdgcl = '' then '1' else qdgcl
+        endif);
+      set ls_title='';
+      set li_rg=0;
+      set li_jx=0;
+      set li_cl=0;
+      set li_qt=0;
+      set ls_point='人工';
+      set ll_flag_dw = 0;
+     for loop2 as cur1 dynamic scroll cursor for
+        select a.node_bh as deh,a.level_bm as mlid1,ifnull(a.gcl,'',a.gcl) as sl,ifnull(a.hssm,'',a.hssm) as sm,node_dw as dw from #tempa as a where a.qflbdh is null and LOCATE(a.level_bm,mlid) = 1 and (a.rowtype = 100 or a.rowtype = 101 ) and length(a.gcl) > 0 order by a.level_bm asc do
+        
+        if dw ='%' then
+      		set ll_flag_dw = 1;
+      	end if;
+        set ls_title=(if alltrim(sl) = 1 then ls_title+'['+deh+']'+(if sm='' then '' else '{'+sm+'}' endif)+'+' else ls_title+'['+deh+']'+(if sm='' then '' else '{'+sm+'}' endif)+'X'+sl+'+' endif) ;
+        
+        end for;
+        
+      select alltrim(string(sum(fetch_col_in_col(sjqtf,'xmdj')))) into ls_djqd from base_data where qflbdh is not null and phandle = chandle1 and rowtype = 100;
+      set ls_djqd=ifnull(ls_djqd,'',ls_djqd);
+      set ls_title="left"(ls_title,length(ls_title)-1);
+      set ll_dexh=ll_dexh+1;
+      set ls_dj=fetch_col_in_col(sjqtf1,'xmdj');
+      insert into temptab(dexh,xxx_flag,xxx_expand1) values(ll_dexh,-3,'micro_xmmc(@@)定额编号:'+bzmlid+ls_gxbh+SPACE(22-length(trim(bzmlid+'定额编号:')))+'项目：'+node_mc1+SPACE(68-length(node_mc1+'项目：'))+'定额单位:'+(if trim(jfxs) = '' or jfxs is null then xmdw else jfxs endif));
+      set ls_djqd=alltrim(ls_dj*1-ls_djqd*1);
+      select count(*) into ll_qd_num from base_data where qflbdh is null and LOCATE(level_bm,mlid) = 1 and(rowtype = 100 or rowtype = 101);
+      if ll_qd_num > 0 then
+        //insert into temptab(dexh,xxx_flag,xxx_expand1) values(ll_dexh,1,'1(@@)6(@@)定额: '+ls_title+'(@@)0(@@)400');
+        insert into temptab(dexh,xxx_flag,xxx_expand1) values(ll_dexh,1,'1(@@)6(@@)型号规格: '+gzlr+'(@@)0(@@)400');
+        insert into temptab(dexh,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6) values(
+          ll_dexh,6,'1(@@)1(@@)编号(@@)2(@@)400','2(@@)2(@@)名        称(@@)2(@@)400','3(@@)3(@@)单位(@@)2(@@)400','4(@@)4(@@)数量(@@)2(@@)400','5(@@)5(@@)单价(元)(@@)2(@@)400','6(@@)6(@@)合计(元)(@@)2(@@)400');
+        delete from temptab1;
+        if qflbdh1 < 0 then
+          set qflbdh1=-qflbdh1
+        end if;
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_rg_xh,ll_rg_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'rgf';
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_cl_xh,ll_cl_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'clf';
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_jx_xh,ll_jx_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'jxf';
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_jc_xh,ll_jc_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'jc';
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_qt_xh,ll_qt_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'qtf';
+        select xh,length(dygs)-length(trim(dygs))+2 into ll_zzxclf_xh,ll_zzxclf_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'zzxclf';
+        
+        insert into temptab1(dexh,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh)
+          select ll_dexh,6,'1(@@)1(@@)'+(if dygs is null or trim(dygs) = '' then '' else if LOCATE(dygs,'@@') > 0 then 
+          	if LOCATE(trim("left"(dygs,LOCATE(dygs,'@@')-1)),';')>0 then left(  trim("left"(dygs,LOCATE(dygs,'@@')-1)), LOCATE(trim("left"(dygs,LOCATE(dygs,'@@')-1)),';') - 1   )
+          else trim("left"(dygs,LOCATE(dygs,'@@')-1)) endif
+              else '' endif endif)+'(@@)2(@@)400','2(@@)2(@@)'+(if dygs is null or trim(dygs) = '' then fymc else if LOCATE(dygs,'@@') > 0 then SPACE(length(dygs)-length(trim(dygs)))+substr(dygs,LOCATE(dygs,'@@')+2) else dygs endif endif)+'(@@)0(@@)400','3(@@)3(@@)(@@)2(@@)400','4(@@)4(@@)'+fl+'(@@)1(@@)400','5(@@)5(@@)(@@)1(@@)400','6(@@)6(@@)'+fyval+'(@@)1(@@)400',xh from #fyb_sl where
+            mod(disflag,2) = 1 and xmid = chandle1 and lbdh = qflbdh1 order by xmid asc,xh asc;
+        for parent1 as p_curs1 dynamic scroll cursor for
+          select a.sx1,a.sx2,a.clbm,a.node_mc as clmc,a.node_dw as cldw,a.dj,alltrim(sum(a.yl1)) as sjyl1,alltrim(round(sum(a.dj*a.yl1),2)) as hj from
+            #gclclb1 as a where LOCATE(a.level_bm,mlid) = 1 and exists(select* from base_data as b where LOCATE(b.level_bm,mlid) = 1 and LOCATE(a.level_bm,b.level_bm) = 1 and b.rowtype = 100 and b.qflbdh is null) group by a.sx1,a.sx2,a.clbm,clmc,cldw,a.dj order by a.sx2 asc,REPEAT('0',8-length(a.clbm))+a.clbm asc do
+          set ls_sx=sx1;
+          if cldw= '%' then
+           if ll_flag_dw = 1 then
+           		set hj = alltrim(round(hj/100,2)	);
+           else
+        		 set dj = alltrim(dj*100	);
+        	end if;
+         end if;
+          set ls_expand3='3(@@)3(@@)'+trim(cldw)+'(@@)2(@@)400';
+          set ls_expand4='5(@@)5(@@)'+trim(dj)+'(@@)1(@@)400';
+          set ls_expand5='4(@@)4(@@)'+trim(sjyl1)+'(@@)1(@@)400';
+          set ls_expand6='6(@@)6(@@)'+trim(hj)+'(@@)1(@@)400';
+          set ls_expand1_ex='1,0,0,1,1';
+          if ls_sx = '人工' then
+              set ls_expand1='1(@@)1(@@)('+alltrim(string(li_rg+1))+')(@@)2(@@)400';
+             // set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+            set ls_expand2='2(@@)2(@@)'+SPACE(ll_rg_SPACE)+trim(clmc)+'(@@)0(@@)400';
+            insert into
+              temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+              ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_rg_xh)
+          end if;
+          if ls_sx = '材料' then
+              set ls_expand1='1(@@)1(@@)('+alltrim(string(li_cl+1))+')(@@)2(@@)400';
+            //  set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+            set ls_expand2='2(@@)2(@@)'+SPACE(ll_cl_SPACE)+trim(clmc)+'(@@)0(@@)400';
+            insert into
+              temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+              ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_cl_xh)
+          end if;
+          if ls_sx = '机械' then
+              set ls_expand1='1(@@)1(@@)('+alltrim(string(li_jx+1))+')(@@)2(@@)400';
+            //  set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+            set ls_expand2='2(@@)2(@@)'+SPACE(ll_jx_SPACE)+trim(clmc)+'(@@)0(@@)400';
+            insert into
+              temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+              ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_jx_xh)
+          end if;
+          
+          
+          if ls_sx = '主材' then
+            
+              set ls_expand1='1(@@)1(@@)('+alltrim(string(li_qt+1))+')(@@)2(@@)400';
+             
+            set ls_expand2='2(@@)2(@@)'+SPACE(ll_zzxclf_SPACE)+trim(clmc)+'(@@)0(@@)400';
+            insert into
+              temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+              ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_zzxclf_xh)
+          end if;
+          
+          if ls_sx = '人工' then
+            set li_rg=li_rg+1
+          elseif ls_sx = '机械' then
+            set li_jx=li_jx+1
+          elseif ls_sx = '主材' then
+            set li_qt=li_qt+1
+          
+          else
+            set li_cl=li_cl+1
+          end if;
+          set ls_point=ls_sx end for;
+           set li_jc =0 ;
+        for parent1 as p_curs11 dynamic scroll cursor for
+          select a.sx1,a.sx2,a.clbm,a.node_mc as clmc,a.node_dw as cldw,alltrim(ifnull(a.tzj,0,a.tzj)-ifnull(a.dj,0,a.dj)) as jc,alltrim(sum(a.yl1)) as sjyl1,alltrim(round(sum((ifnull(a.tzj,0,a.tzj)-ifnull(a.dj,0,a.dj))*a.yl1),2)) as hj from
+            #gclclb2 as a where  ll_jc_xh > 0  and  LOCATE(a.level_bm,mlid) = 1 and exists(select* from base_data as b where LOCATE(b.level_bm,mlid) = 1 and LOCATE(a.level_bm,b.level_bm) = 1 and b.rowtype = 100 and b.qflbdh is null) group by a.sx1,a.sx2,a.clbm,clmc,cldw,jc order by a.sx2 asc,REPEAT('0',8-length(a.clbm))+a.clbm asc do
+          set li_jc =li_jc+1 ;
+          set ls_expand1='1(@@)1(@@)('+string(li_jc)+')(@@)2(@@)400';
+          set ls_expand3='3(@@)3(@@)'+trim(cldw)+'(@@)2(@@)400';
+          set ls_expand4='5(@@)5(@@)'+trim(jc)+'(@@)1(@@)400';
+          set ls_expand5='4(@@)4(@@)'+trim(sjyl1)+'(@@)1(@@)400';
+          set ls_expand6='6(@@)6(@@)'+trim(hj)+'(@@)1(@@)400';
+          set ls_expand1_ex='1,0,0,1,1';
+          set ls_expand2='2(@@)2(@@)'+SPACE(ll_jc_SPACE)+trim(clmc)+'(@@)0(@@)400';
+          insert into
+            temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+            ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_jc_xh) end for;
+      
+        insert into
+          temptab(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6)
+          select dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6 from temptab1 order by xh asc,xh1 asc;
+      
+      end if;
+      for parent3 as p_curs3 dynamic scroll cursor for
+        select fetch_col_in_col(sjqtf,'xmdj') as dedj,ifnull(node_bh,'',node_bh) as deh2,ifnull(gcl,'',gcl) as gcl2,qflbdh as qflbdh2,level_bm as demlid,chandle as dechandle from base_data where phandle = chandle1 order by level_bm asc do
+        if qflbdh2 is not null then
+          set ll_insert_hj_flag = 1;
+          set li_rg=0;
+          set li_jx=0;
+          set li_cl=0;
+          set li_qt=0;
+          set ls_point='人工';
+          set ls_title='';
+          set ls_title=if alltrim(gcl2) = '1' then ls_title+'['+deh2+']' else ls_title+'['+deh2+']X'+gcl2 endif;
+          for loop21 as cur21 dynamic scroll cursor for
+            select(if "RIGHT"(a.node_bh,6) = '(借用)' then a.node_bh else SUBSTR(a.node_bh,PATINDEX('%[ 0,1,2,3,4,5,6,7,8,9 ]%',a.node_bh)) endif) as deh,ifnull(a.gcl,'',a.gcl) as sl from base_data as a where a.phandle = dechandle and a.rowtype = 101 and length(a.gcl) > 0 order by a.level_bm asc do
+            
+            set ls_title=(if alltrim(sl) = 1 then ls_title+'+['+deh+']+' else ls_title+'+['+deh+']X'+sl endif) end for;
+          insert into temptab(dexh,xxx_flag,xxx_expand1) values(ll_dexh,1,'1(@@)6(@@)定额: '+ls_title+'(@@)0(@@)400');
+          insert into temptab(dexh,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6) values(
+            ll_dexh,6,'1(@@)1(@@)编号(@@)2(@@)400','2(@@)2(@@)名        称(@@)2(@@)400','3(@@)3(@@)单位(@@)2(@@)400','4(@@)4(@@)数量(@@)2(@@)400','5(@@)5(@@)单价(元)(@@)2(@@)400','6(@@)6(@@)合计(元)(@@)2(@@)400');
+          delete from temptab1;
+          if qflbdh2 < 0 then
+            set qflbdh2=-qflbdh2
+          end if;
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_rg_xh,ll_rg_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'rgf';
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_cl_xh,ll_cl_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'clf';
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_jx_xh,ll_jx_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'jxf';
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_jc_xh,ll_jc_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'jc';
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_qt_xh,ll_qt_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'qtf';
+          select xh,length(dygs)-length(trim(dygs))+2 into ll_zzxclf_xh,ll_zzxclf_SPACE from #fyb_sl where xmid = chandle1 and lbdh = qflbdh1 and hx_head = 'zzxclf';
+          
+          insert into temptab1(dexh,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh)
+            select ll_dexh,6,'1(@@)1(@@)'+(if dygs is null or trim(dygs) = '' then '' else if LOCATE(dygs,'@@') > 0 then 
+          	if LOCATE(trim("left"(dygs,LOCATE(dygs,'@@')-1)),';')>0 then left(  trim("left"(dygs,LOCATE(dygs,'@@')-1)), LOCATE(trim("left"(dygs,LOCATE(dygs,'@@')-1)),';') - 1   )
+          else trim("left"(dygs,LOCATE(dygs,'@@')-1)) endif
+              else '' endif endif)+'(@@)2(@@)400','2(@@)2(@@)'+(if dygs is null or trim(dygs) = '' then fymc else if LOCATE(dygs,'@@') > 0 then SPACE(length(dygs)-length(trim(dygs)))+substr(dygs,LOCATE(dygs,'@@')+2) else dygs endif endif)+'(@@)0(@@)400','3(@@)3(@@)(@@)2(@@)400','4(@@)4(@@)'+fl+'(@@)1(@@)400','5(@@)5(@@)(@@)1(@@)400','6(@@)6(@@)'+fyval+'(@@)1(@@)400',xh  from #fyb_sl where
+              mod(disflag,2) = 1 and xmid = dechandle and lbdh = qflbdh2 order by xmid asc,xh asc;
+          for parent2 as p_curs2 dynamic scroll cursor for
+            select sx1,sx2,clbm,node_mc as clmc,node_dw as cldw,dj,alltrim(sum(yl1)) as sjyl1,alltrim(round(sum(dj*yl1),2)) as hj from
+              #gclclb1 where LOCATE(level_bm,demlid) = 1 group by sx1,sx2,clbm,clmc,cldw,dj order by sx2 asc,REPEAT('0',8-length(clbm))+clbm asc do
+            set ls_sx=sx1;
+             if cldw= '%' then
+           if ll_flag_dw = 1 then
+           		set hj = alltrim(round(hj/100,2)	);
+           else
+        		 set dj = alltrim(dj*100	);
+        	end if;
+         end if;
+            set ls_expand3='3(@@)3(@@)'+trim(cldw)+'(@@)2(@@)400';
+            set ls_expand4='5(@@)5(@@)'+trim(dj)+'(@@)1(@@)400';
+            set ls_expand5='4(@@)4(@@)'+trim(sjyl1)+'(@@)1(@@)400';
+            set ls_expand6='6(@@)6(@@)'+trim(hj)+'(@@)1(@@)400';
+            set ls_expand1_ex='1,0,0,1,1';
+            if ls_sx = '人工' then
+              set ls_expand1='1(@@)1(@@)('+alltrim(string(li_rg+1))+')(@@)2(@@)400';
+              //set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+              set ls_expand2='2(@@)2(@@)'+SPACE(ll_rg_SPACE)+trim(clmc)+'(@@)0(@@)400';
+              insert into
+                temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+                ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_rg_xh)
+            end if;
+            if ls_sx = '材料' then
+                set ls_expand1='1(@@)1(@@)('+alltrim(string(li_cl+1))+')(@@)2(@@)400';
+              //  set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+              set ls_expand2='2(@@)2(@@)'+SPACE(ll_cl_SPACE)+trim(clmc)+'(@@)0(@@)400';
+              insert into
+                temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+                ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_cl_xh)
+            end if;
+            if ls_sx = '机械' then
+                set ls_expand1='1(@@)1(@@)('+alltrim(string(li_jx+1))+')(@@)2(@@)400';
+              //  set ls_expand1='1(@@)1(@@)'+trim(clbm)+'(@@)0(@@)400';
+              set ls_expand2='2(@@)2(@@)'+SPACE(ll_jx_SPACE)+trim(clmc)+'(@@)0(@@)400';
+              insert into
+                temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+                ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_jx_xh)
+            end if;
+            
+            
+            if ls_sx = '主材' then
+            
+                set ls_expand1='1(@@)1(@@)('+alltrim(string(li_qt+1))+')(@@)2(@@)400';
+           
+              set ls_expand2='2(@@)2(@@)'+SPACE(ll_zzxclf_SPACE)+trim(clmc)+'(@@)0(@@)400';
+              insert into
+                temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+                ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_zzxclf_xh)
+            end if;
+            
+            
+            if ls_sx = '人工' then
+              set li_rg=li_rg+1
+            elseif ls_sx = '机械' then
+              set li_jx=li_jx+1
+            elseif ls_sx = '主材' then
+              set li_qt=li_qt+1
+            else
+              set li_cl=li_cl+1
+            end if;
+            set ls_point=ls_sx end for;
+             set li_jc =0 ;
+          for parent2 as p_curs21 dynamic scroll cursor for
+            select sx1,sx2,clbm,node_mc as clmc,node_dw as cldw,alltrim(ifnull(tzj,0,tzj)-ifnull(dj,0,dj)) as jc,alltrim(sum(yl1)) as sjyl1,alltrim(round(sum((ifnull(tzj,0,tzj)-ifnull(dj,0,dj))*yl1),2)) as hj from
+              #gclclb2 where   ll_jc_xh > 0  and   LOCATE(level_bm,demlid) = 1 group by sx1,sx2,clbm,clmc,cldw,jc order by sx2 asc,REPEAT('0',8-length(clbm))+clbm asc do
+            set li_jc =li_jc+1 ;
+            set ls_expand1='1(@@)1(@@)('+string(li_jc)+')(@@)2(@@)400';
+            set ls_expand3='3(@@)3(@@)'+trim(cldw)+'(@@)2(@@)400';
+            set ls_expand4='5(@@)5(@@)'+trim(jc)+'(@@)1(@@)400';
+            set ls_expand5='4(@@)4(@@)'+trim(sjyl1)+'(@@)1(@@)400';
+            set ls_expand6='6(@@)6(@@)'+trim(hj)+'(@@)1(@@)400';
+            set ls_expand1_ex='1,0,0,1,1';
+            set ls_expand2='2(@@)2(@@)'+SPACE(ll_jc_SPACE)+trim(clmc)+'(@@)0(@@)400';
+            insert into
+              temptab1(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6,xh) values(
+              ll_dexh,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,ls_expand1_ex,6,ls_expand1,ls_expand2,ls_expand3,ls_expand4,ls_expand5,ls_expand6,ll_jc_xh) end for;
+          insert into
+            temptab(dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6)
+            select dexh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand3_sx_ex,xxx_expand4_sx_ex,xxx_expand5_sx_ex,xxx_expand6_sx_ex,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_expand6 from temptab1 order by xh asc,xh1 asc;
+       
+          set ll_flag=1
+        end if end for;
+        //有多种取费才插入合计
+      if ll_insert_hj_flag = 1 then  
+      insert into temptab(dexh,xxx_expand1,xxx_expand2,xxx_expand3,xxx_expand4,xxx_expand5,xxx_flag) values(dexh,'1(@@)2(@@)合计(@@)2(@@)400','3(@@)3(@@)(@@)1(@@)400','4(@@)4(@@)(@@)1(@@)400','5(@@)5(@@)(@@)1(@@)400','6(@@)6(@@)'+ls_dj+'(@@)1(@@)400',5);
+      end if;
+      set ls_title='';
+      for parent12 as p_curs12 dynamic scroll cursor for
+        select a.node_mc,a.node_dw,alltrim(round(sum(a.yl1),3)) as sjyl2 from base_data as a where LOCATE(a.level_bm,mlid) = 1 and a.rowtype = 2601 and exists(select* from base_data as b where b.chandle = a.phandle and b.rowtype <> 101) and(a.clsx = '人工' or a.clsx = '材料' or trim(a.clsx) = '' or a.clsx is null) and a.yl1 <> '' and a.yl1 is not null group by a.clbm,a.node_mc,a.node_dw order by REPEAT('0',8-length(a.clbm))+a.clbm asc do
+        set ls_title=ls_title+node_mc+sjyl2+node_dw+'  ' end for;
+        if trim(ls_title)<>'' and (select keyval from config where keyname = 'print_djfxzm') = 1 then
+      insert into
+        temptab(dexh,xxx_expand1,xxx_flag) values(dexh,'1(@@)6(@@)'+ls_title+'(@@)0(@@)400',1);
+        end if;
+      insert into temptab(xxx_flag) values(-1)
+    end if end for;
+  select* from temptab order by xh asc
+end
+
+[/SQL]
+
+[SQLSYNTAX]
+alter procedure
+qssldl.djfx()
+begin
+  declare local temporary table temptab(
+    dexh integer null,
+    xh integer null default autoincrement,
+    col1 varchar(1) null default '',
+    col2 varchar(1) null default '',
+    col3 varchar(1) null default '',
+    col4 varchar(1) null default '',
+    col5 varchar(1) null default '',
+    col6 varchar(1) null default '',
+    xxx_flag integer not null default
+    0,
+    xxx_expand1_sx_ex long varchar  null default '',
+    xxx_expand2_sx_ex long varchar  null default '',
+    xxx_expand3_sx_ex long varchar  null default '',
+    xxx_expand4_sx_ex long varchar  null default '',
+    xxx_expand5_sx_ex long varchar  null default '',
+    xxx_expand6_sx_ex long varchar  null default '',
+    xxx_expand1 long varchar null default '',
+    xxx_expand2 long varchar null default '',
+    xxx_expand3 long varchar null default '',
+    xxx_expand4 long varchar null default '',
+    xxx_expand5 long varchar null default '',
+    xxx_expand6 long varchar null default '',
+    ) on commit delete rows;
+ select* from temptab order by xh asc;
+end
+[/SQLSYNTAX]
+
+[PARAMETER]
+[/PARAMETER]
+
+[DESCRIBE]
+[/DESCRIBE]
+BE]
+[/DESCRIBE]
+E]
+METER]
+
+[DESCRIBE]
+[/DESCRIBE]
+BE]
+[/DESCRIBE]
+E]
+[TEMP]
+ReWrite=1

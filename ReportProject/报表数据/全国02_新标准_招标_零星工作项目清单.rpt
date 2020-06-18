@@ -1,0 +1,157 @@
+[DESIGN]
+d001=0
+d001001=零星工作项目清单,101,159,204,143,1,2.25,-1,宋体,-9,0,0,1.0,1.5
+d002=15
+d0020001=pxh
+d0020002=xh
+d0020003=node_bh
+d0020004=node_mc
+d0020005=node_dw
+d0020006=sjjj1
+d0020007=gcl
+d0020008=hjjj1
+d0020009=rowtype
+d0020010=flag2
+d0020011=level_bm
+d0020012=bz
+d0020013=bzmlid
+d0020014=gcl_exp
+d0020015=mc3
+d003=11
+d0030001=xh,48,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0
+d0030002=bzmlid,63,宋体,,400,0,0,0,0,,0,2,1,,,,,,0,,,,编号
+d0030003=node_bh,54,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0,编号1
+d0030004=node_mc,127,,,,,,,,16777215,0,2,1,1,1,1,1,0,0,1,0,0,工程项目及名称
+d0030005=mc3,100,,,400,0,0,0,0,,0,2,1,,,,,,0
+d0030006=node_dw,39,,,,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0,单位
+d0030007=gcl_exp,100,宋体,,400,0,0,0,0,,0,2,1,,,,,0,1,,,,工程量计算式
+d0030008=gcl,54,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0,工程量
+d0030009=sjjj1,59,,,,,,,,16777215,1,2,1,1,1,1,0,0,1,1,0,0,单价
+d0030010=hjjj1,75,,,,,,,,16777215,1,2,1,1,1,1,0,0,1,1,0,0,合计
+d0030011=bz,95,宋体,,400,0,0,0,0,,0,2,1,,,,,,,,,,备注
+d0040001=4
+d0040002=2
+d0040003=1
+d0040004=0
+d0040005=0
+d0040006=0
+d005=15
+d0050001=1,1,1,11,2,零星工作项目清单,,-18,700,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+d0050002=1,1,3,7,3,合同编号：[合同编号],,,,,,,,16777215,0,2,0,0,0,0,0,0,0,1,0,0
+d0050003=1,1,4,7,4,工程名称：[工程名称],,,,,,,,16777215,0,2,0,0,0,0,0,0,0,1,0,0
+d0050004=2,1,1,1,2,序号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050005=2,2,1,2,2,序号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050006=2,4,1,4,2,项目名称,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050007=2,6,1,6,2,计量char(13)char(10)单位,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050008=2,8,1,8,2,工程char(13)char(10)数量,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050009=2,9,1,9,2,单价[micro_dj_wy],,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050010=2,10,1,10,2,金额（元）,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050011=2,3,1,3,2,项目编号,宋体,,400,0,0,0,0,,2,2,1
+d0050012=2,11,1,11,2,备注,宋体,,400,0,0,0,0,,2,2,1
+d0050013=2,7,1,7,2,工程量计算式,宋体,,400,0,0,0,0,,2,2,1
+d0050014=2,5,1,5,2,规格型号,,,400,0,0,0,0,,2,2,1
+d0050015=1,10,4,11,4,第 [pageno] 页 共 [pagecount] 页,,,400,0,0,0,0,,1,2,0,0,0,0
+
+[DATA]
+execute usp_sl_0102();
+[/DATA]
+
+[SQL]
+alter procedure
+qssldl.usp_sl_0102()
+begin
+  declare @level_bm varchar(50);
+  declare @parent_levelbm varchar(50);
+  declare @flag integer;
+  declare li_num integer;
+  declare li_max_pxh integer;
+  declare ls_jc varchar(12);
+  declare ls_sj varchar(12);
+  declare ls_sl varchar(12);
+  declare ls_jchj varchar(12);
+  declare ls_top_mlid varchar(128);
+  declare ls_desys varchar(32);
+  declare ls_gc_sum varchar(32);
+  declare ls_xm_round long varchar;
+  declare li_xm_dj_round integer;
+  declare li_xm_hj_round integer;
+  declare li_xm_dj_wy integer;
+  declare li_xm_hj_wy integer;
+  declare micro_hj_wy varchar(16);
+  declare micro_dj_wy varchar(16);
+  declare ls_bzdw long varchar;
+  declare ls_dbr long varchar;
+  declare ls_date long varchar;
+   declare ls_ztb_val varchar(64);
+  declare ls_bzr varchar(64);
+  declare ll_keyid_max integer;
+  
+  
+  select keyval into ls_xm_round from config where keyname = 'xm_round';
+  select ifnull(keyval,'',keyval) into ls_desys from config where keyname = 'jsjc';
+  set li_xm_dj_round=cast(rpt_getparameter('dj_round','2') as integer);
+  set li_xm_hj_round=cast(rpt_getparameter('hj_round','2') as integer);
+  if rpt_getparameter('dj_wy','0') = '1' then
+    set li_xm_dj_wy=10000
+  else
+    set li_xm_dj_wy=1
+  end if;
+  if rpt_getparameter('hj_wy','0') = '1' then
+    set li_xm_hj_wy=10000
+  else
+    set li_xm_hj_wy=1
+  end if;
+  if li_xm_dj_wy = 10000 then
+    set micro_dj_wy='万元'
+  else
+    set micro_dj_wy='元'
+  end if;
+  if li_xm_hj_wy = 10000 then
+    set micro_hj_wy='万元'
+  else
+    set micro_hj_wy='元'
+  end if;
+  set @flag=0;
+  
+  
+  select level_bm into @parent_levelbm from base_data where node_type like '%node_type=零星项目%';
+  
+  select convert(varchar(5),null) as xh,node_bh,node_mc,node_dw,sjjj1,gcl,hjjj1,rowtype,flag2,level_bm,bz,bzmlid,gcl_exp,mc3 into #temp1 from
+    base_data where rowtype = 0 and  length(level_bm) >length(@parent_levelbm) and level_bm like @parent_levelbm + '%' order by level_bm asc;
+  
+  select number(*) as xh,level_bm into #temp2 from #temp1 where(flag2 = 0 or flag2 is null) and rowtype = 0 order by level_bm asc;
+  update #temp1 as a,#temp2 as b set a.xh = b.xh where a.level_bm = b.level_bm;
+  select number(*) as pxh,* into #temp3 from #temp1 order by level_bm asc;
+  select max(pxh) into li_max_pxh from #temp3;
+  select level_bm into ls_top_mlid from #temp3 where pxh = 1;
+  select count(*) into li_num from base_data where LOCATE(level_bm,ls_top_mlid) = 1 and tzj is not null and trim(tzj) <> '' and ifnull(clsx,'',clsx) <> '设备';
+  
+  select alltrim(string(sum(hjjj1*1.0+hjsbf1*1.0))) into ls_gc_sum from base_data where(level_bm like @parent_levelbm and flag2 > 0 and flag3 = 0);
+  set ls_gc_sum=alltrim(round(ls_gc_sum/li_xm_hj_wy,li_xm_hj_round));
+  update #temp3 set hjjj1 = alltrim(round(hjjj1/li_xm_hj_wy,li_xm_hj_round)),
+    sjjj1 = alltrim(round(sjjj1/li_xm_dj_wy,li_xm_dj_round));
+  select*,cast(0 as integer) as xxx_flag,cast(null as long varchar) as xxx_expand1,cast(null as long varchar) as xxx_expand2,cast(null as long varchar) as xxx_expand3,cast(null as long varchar) as xxx_expand1_sx_ex,cast(null as long varchar) as xxx_expand2_sx_ex into #temp4 from #temp3;
+  //insert into #temp4(xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,pxh) values(1003,'1(@@)4(@@)合        计(@@)2(@@)400','5(@@)5(@@)'+micro_hj_wy+'(@@)2(@@)400','6(@@)10(@@)(@@)2(@@)400',99999);
+  insert into #temp4(xxx_flag,xxx_expand1,pxh) values(-3,'micro_dj_wy(@@)('+micro_dj_wy+')(&&)micro_hj_wy(@@)('+micro_hj_wy+')',0);
+
+update #temp4 set node_bh = '' where length(node_bh) < 12;
+update #temp4 set sjjj1= '',hjjj1='';
+
+  select* from #temp4 order by pxh asc;
+  if @flag = 1 then
+    select '' as node_bh,'' as node_mc,'' as node_dw,'' as sjjj1,'' as gcl,'' as hjjj1,'' as gcl_exp from
+      dummy where 1 = 2
+  end if
+end
+[/SQL]
+
+[SQLSYNTAX]
+[/SQLSYNTAX]
+
+[PARAMETER]
+[/PARAMETER]
+
+[DESCRIBE]
+[/DESCRIBE]
+[TEMP]
+ReWrite=1

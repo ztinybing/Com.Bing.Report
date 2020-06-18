@@ -1,0 +1,251 @@
+[DESIGN]
+d001=0
+d001001=分组工程报价组成表,119,82,103,143,2,2.25,-1,宋体,-9,0,0,1.0,1.5
+d002=40
+d0020001=chandle
+d0020002=phandle
+d0020003=mlid
+d0020004=gcl
+d0020005=xh
+d0020006=node_bh
+d0020007=xmmc
+d0020008=dw
+d0020009=dj
+d0020010=rgf
+d0020011=jxf
+d0020012=clf
+d0020013=qtf
+d0020014=zzclf
+d0020015=qtzjf
+d0020016=xcf
+d0020017=jjf
+d0020018=lr
+d0020019=jc
+d0020020=tx
+d0020021=sj
+d0020022=hj
+d0020023=hjrgf
+d0020024=hjjxf
+d0020025=hjclf
+d0020026=hjqtf
+d0020027=hjzzclf
+d0020028=hjqtzjf
+d0020029=hjxcf
+d0020030=hjjjf
+d0020031=hjlr
+d0020032=hjjc
+d0020033=hjtx
+d0020034=hjsj
+d0020035=level_bm
+d0020036=flag2
+d0020037=flag3
+d0020038=rowtype
+d0020039=dwbz
+d0020040=pxh
+d003=17
+d0030001=xh,19,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0,序号
+d0030002=node_bh,31,,,,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0,编号
+d0030003=xmmc,175,,,,,,,,16777215,0,2,1,1,1,1,1,0,0,0,0,0,项目名称
+d0030004=dw,19,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0,单位
+d0030005=dj,25,,,,,,,,16777215,1,2,1,1,1,1,0,0,1,1,0,0,单价
+d0030006=hjrgf,45,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,人工费
+d0030007=hjclf,45,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,材料费
+d0030008=hjjxf,45,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,机械费
+d0030009=hjqtf,47,宋体,,400,0,0,0,0,,1,2,1,,,,,1,,,,,其他费
+d0030010=hjqtzjf,47,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,其他直接费
+d0030011=hjxcf,53,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,现场经费
+d0030012=hjjjf,58,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,间接费
+d0030013=hjlr,45,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,利润
+d0030014=hjjc,38,宋体,,400,0,0,0,0,,1,2,1,,,,,1,0,,,,价差
+d0030015=hjsj,50,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,税金
+d0030016=hjtx,55,,,400,0,0,0,0,,1,2,1,,,,,0,0,,,,其他费用摊销
+d0030017=hj,39,宋体,,400,0,0,0,0,,1,2,1,,,,,,,,,,合计
+d0040001=3
+d0040002=2
+d0040003=1
+d0040004=0
+d0040005=1
+d0040006=0
+d005=20
+d0050001=1,3,1,17,2,分组工程报价组成表,,-18,700,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+d0050002=1,1,3,10,3,[招投标工程名称],,,400,,,,,16777215,0,0,0,0,0,0,0,0,0,1,0,0
+d0050003=2,1,1,1,2,序号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050004=2,2,1,2,2,编号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050005=2,3,1,3,2,项目名称,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050006=2,4,1,4,2,单位,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050007=2,5,1,5,2,单价,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050008=5,1,1,17,1,[emunpageno],,-11,,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+d0050009=2,6,1,6,2,人工费,宋体,,400,0,0,0,0,,2,2,1
+d0050010=2,7,1,7,2,材料费,宋体,,400,0,0,0,0,,2,2,1
+d0050011=2,8,1,8,2,机械费,宋体,,400,0,0,0,0,,2,2,1
+d0050012=2,10,1,10,2,其他直接费,宋体,,400,0,0,0,0,,2,2,1
+d0050013=2,11,1,11,2,现场经费,宋体,,400,0,0,0,0,,2,2,1
+d0050014=2,12,1,12,2,间接费,宋体,,400,0,0,0,0,,2,2,1
+d0050015=2,13,1,13,2,利润,宋体,,400,0,0,0,0,,2,2,1
+d0050016=2,15,1,15,2,税金,宋体,,400,0,0,0,0,,2,2,1
+d0050017=2,17,1,17,2,合计,宋体,,400,0,0,0,0,,2,2,1
+d0050018=2,9,1,9,2,其他费,宋体,,400,0,0,0,0,,2,2,1
+d0050019=2,14,1,14,2,价差,宋体,,400,0,0,0,0,,2,2,1
+d0050020=2,16,1,16,2,其他费用摊销,,,400,0,0,0,0,,2,2,1
+
+[DATA]
+execute usp_sl_0201();
+[/DATA]
+
+[SQL]
+alter procedure qssldl.usp_sl_0201()
+begin
+  declare cmlid long varchar;
+  declare cmlid1 long varchar;
+  declare cmlid2 long varchar;
+  declare cmlid3 long varchar;
+  declare ls_bzdw long varchar;
+  declare ls_dbr long varchar;
+  declare ls_date long varchar;
+   declare ls_ztb_val varchar(64);
+  declare ls_bzr varchar(64);
+  declare ll_keyid_max integer;
+  
+  select prodata_value into ls_date from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzdate';
+  set ls_date=ifnull(ls_date,'',ls_date);
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'年'),2,' 年 ');
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'月'),2,' 月 ');
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'日'),2,' 日');
+  select prodata_value into ls_bzdw from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzdw';
+  set ls_bzdw=ifnull(ls_bzdw,'',ls_bzdw);
+  select prodata_value into ls_dbr from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'dbr';
+  set ls_dbr=ifnull(ls_dbr,'',ls_dbr);
+  set cmlid=(select keyval from config where keyname = 'level_bm');
+  set cmlid=ifnull(cmlid,'',cmlid);
+  set cmlid1='';
+  set cmlid2='';
+  set cmlid3='';
+  set cmlid1="left"(cmlid,5)+'%';
+  select chandle,phandle,
+    cast(null as varchar(128)) as mlid,gcl,
+    convert(varchar(5),null) as xh,
+    node_bh,node_mc as xmmc,node_dw as dw,
+    sjjj1 as dj,
+    fetch_col_in_col(sjqtf,'rgf') as rgf,
+    fetch_col_in_col(sjqtf,'jxf') as jxf,
+    fetch_col_in_col(sjqtf,'clf') as clf,
+    fetch_col_in_col(sjqtf,'qtf') as qtf,
+    fetch_col_in_col(sjqtf,'zzxclf') as zzclf,
+    fetch_col_in_col(sjqtf,'qtzjf') as qtzjf,
+    fetch_col_in_col(sjqtf,'xcjf') as xcf,
+    fetch_col_in_col(sjqtf,'jjf') as jjf,
+    fetch_col_in_col(sjqtf,'qylr') as lr,
+    fetch_col_in_col(sjqtf,'jc') as jc,
+    fetch_col_in_col(sjqtf,'tx') as tx,
+    fetch_col_in_col(sjqtf,'sj') as sj,
+    cast(null as varchar(16)) as hj,
+    cast(null as varchar(16)) as hjrgf,
+    cast(null as varchar(16)) as hjjxf,
+    cast(null as varchar(16)) as hjclf,
+    cast(null as varchar(16)) as hjqtf,
+    cast(null as varchar(16)) as hjzzclf,
+    cast(null as varchar(16)) as hjqtzjf,
+    cast(null as varchar(16)) as hjxcf,
+    cast(null as varchar(16)) as hjjjf,
+    cast(null as varchar(16)) as hjlr,
+    cast(null as varchar(16)) as hjjc,
+    cast(null as varchar(16)) as hjtx,
+    cast(null as varchar(16)) as hjsj,
+    level_bm,flag2,flag3,rowtype,dwbz into #temp1 from
+    base_data where level_bm like cmlid1 and(flag2 >= 0 or flag2 is null) and rowtype = 0 order by level_bm asc;
+  select* into #temp4 from #temp1 where flag2 > 0 order by level_bm asc;
+  update #temp4 as a set a.mlid = (select ifnull(min(b.level_bm),'ZZZZZ',min(b.level_bm)) from #temp4 as b where a.flag2 >= b.flag2 and b.level_bm > a.level_bm and a.phandle = b.phandle) where(a.flag2 is not null);
+  select* into #temp5 from #temp1 where flag2 = 0 or flag2 is null or length(gcl)>0 order by level_bm asc;
+  update #temp5 set dj = alltrim(round(dj,4)),rgf = alltrim(round((rgf/dwbz),4)),jxf = alltrim(round((jxf/dwbz),4)),clf = alltrim(round((clf/dwbz),4)),qtf = alltrim(round((qtf/dwbz),4)),zzclf = alltrim(round((zzclf/dwbz),4)),qtzjf = alltrim(round((qtzjf/dwbz),4)),xcf = alltrim(round((xcf/dwbz),4)),jjf = alltrim(round((jjf/dwbz),4)),lr = alltrim(round((lr/dwbz),4)),jc = alltrim(round((jc/dwbz),4)),tx = alltrim(round((tx/dwbz),4)),sj = alltrim(round((sj/dwbz),4)) where dwbz <> 1 and dwbz <> 0 and not(dwbz is null);
+  update #temp5 set hj = alltrim(round(dj*gcl,2)),hjrgf = alltrim(round(rgf*gcl,2)),hjjxf = alltrim(round(jxf*gcl,2)),hjclf = alltrim(round(clf*gcl,2)),hjqtf = alltrim(round(qtf*gcl,2)),hjzzclf = alltrim(round(zzclf*gcl,2)),hjqtzjf = alltrim(round(qtzjf*gcl,2)),hjxcf = alltrim(round(xcf*gcl,2)),hjjjf = alltrim(round(jjf*gcl,2)),hjlr = alltrim(round(lr*gcl,2)),hjjc = alltrim(round(jc*gcl,2)),hjtx = alltrim(round(tx*gcl,2)),hjsj = alltrim(round(sj*gcl,2));
+  select a.chandle,alltrim(sum(b.hj)) as hj,alltrim(sum(b.hjrgf)) as hjrgf,alltrim(sum(b.hjclf)) as hjclf,alltrim(sum(b.hjjxf)) as hjjxf,alltrim(sum(b.hjqtf)) as hjqtf,alltrim(sum(b.hjzzclf)) as hjzzclf,alltrim(sum(b.hjqtzjf)) as hjqtzjf,alltrim(sum(b.hjxcf)) as hjxcf,alltrim(sum(b.hjlr)) as hjlr,(alltrim(sum(b.hjjjf))) as hjjjf,alltrim(sum(b.hjjc)) as hjjc,alltrim(sum(b.hjtx)) as hjtx,alltrim(sum(b.hjsj)) as hjsj into #temp2 from
+    #temp4 as a,#temp5 as b where
+    (LOCATE(b.level_bm,a.level_bm) = 1 or "left"(b.level_bm,length(b.level_bm)-5) = "left"(a.level_bm,length(a.level_bm)-5) and b.level_bm > a.level_bm and b.level_bm < a.mlid)
+    group by a.chandle;
+  update #temp1 as a,#temp2 as b set
+    a.hj = b.hj,
+    a.hjrgf = b.hjrgf,
+    a.hjclf = b.hjclf,
+    a.hjjxf = b.hjjxf,
+    a.hjqtf = b.hjqtf,
+    a.hjzzclf = b.hjzzclf,
+    a.hjqtzjf = b.hjqtzjf,
+    a.hjxcf = b.hjxcf,
+    a.hjjjf = b.hjjjf,
+    a.hjlr = b.hjlr,
+    a.hjjc = b.hjjc,
+    a.hjtx = b.hjtx,
+    a.hjsj = b.hjsj where a.chandle = b.chandle;
+  update #temp1 as a,#temp5 as b set
+    a.dj = b.dj,
+    a.rgf = b.rgf,
+    a.clf = b.clf,
+    a.jxf = b.jxf,
+    a.qtf = b.qtf,
+    a.zzclf = b.zzclf,
+    a.qtzjf = b.qtzjf,
+    a.xcf = b.xcf,
+    a.jjf = b.jjf,
+    a.lr = b.lr,
+    a.jc = b.jc,
+    a.tx = b.tx,
+    a.sj = b.sj where a.chandle = b.chandle;
+  insert into #temp1(chandle,phandle,xmmc,level_bm,hj,hjrgf,hjjxf,hjclf,hjqtf,hjzzclf,hjqtzjf,hjxcf,hjjjf,hjlr,hjjc,hjtx,hjsj)
+    select 0,0,'===合计===','ZZZZZZ',alltrim(sum(hj)),alltrim(sum(hjrgf)),alltrim(sum(hjjxf)),alltrim(sum(hjclf)),alltrim(sum(hjqtf)),alltrim(sum(hjzzclf)),alltrim(sum(hjqtzjf)),alltrim(sum(hjxcf)),alltrim(sum(hjjjf)),alltrim(sum(hjlr)),alltrim(sum(hjjc)),alltrim(sum(hjtx)),alltrim(sum(hjsj)) from #temp5;
+ 
+ update  #temp1 set hj='',hjrgf='',hjclf='',hjjxf='',hjqtf='',hjzzclf='',hjqtzjf='',hjxcf='',hjjjf='',hjlr='',hjtx='',hjsj='';
+ 
+  select*,number(*) as pxh,
+    convert(long varchar,null) as xxx_expand1,
+    convert(long varchar,null) as xxx_expand2,
+    convert(long varchar,null) as xxx_expand1_sx_ex,
+    convert(long varchar,null) as xxx_expand2_sx_ex,
+    convert(integer,0) as xxx_flag into #temp7 from #temp1 where flag3 = 0 or chandle = 0;
+
+  select prodata_value into ls_bzr from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzr';
+set ls_bzr=ifnull(ls_bzr,'',ls_bzr);
+insert into
+    #temp7(pxh,xh,chandle,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000,'0','','1,0,0,0,0,0,-1,1','1,0,0,0,0,0,-1,1','1(@@)10(@@)(@@)0(@@)400','11(@@)17(@@)(@@)0(@@)400',1002);
+select max(keyid) into ll_keyid_max  from #ztb_set;
+FOR names AS curs CURSOR FOR
+select keyid,keyname,keyval from #ztb_set order by keyid
+DO
+  
+  if keyname = 'tbr' then 
+  	set ls_ztb_val = keyval;
+  end if;
+  if keyname = 'fddbr' then 
+  	set ls_ztb_val = keyval;
+  end if;
+  
+  if keyname = 'bzr' then 
+  	set ls_ztb_val = keyval;
+  end if;
+  
+  
+  if keyname = 'date' then 
+  	set ls_ztb_val = '     年   月   日';
+  end if;
+  
+  if keyid < ll_keyid_max then
+  	insert into
+    #temp7(pxh,xh,chandle,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000+keyid,'0','','1,0,0,0,0','1,0,0,0,0','1(@@)10(@@)(@@)0(@@)400','11(@@)17(@@)'+ls_ztb_val+'(@@)0(@@)400',1002);
+  else
+  	insert into
+    #temp7(pxh,xh,chandle,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000+keyid,'0','','1,0,0,0,0,0,-1,1','1,0,0,0,0,0,-1,1','1(@@)10(@@)(@@)0(@@)400','11(@@)17(@@)'+ls_ztb_val+'(@@)0(@@)400',1002);
+  end if;
+END FOR; 
+  insert into #temp7(xxx_flag,pxh,xh,chandle) values(-1,100040,'0','');
+update #temp7 set hjjc='';
+  select* from #temp7 order by pxh asc
+end
+[/SQL]
+
+[SQLSYNTAX]
+[/SQLSYNTAX]
+
+[PARAMETER]
+[/PARAMETER]
+
+[DESCRIBE]
+[/DESCRIBE]

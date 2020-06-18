@@ -1,0 +1,27 @@
+
+2019-12-06 09:22:43
+Void .ctor(System.Exception)
+D:\temp\Com.Bing.Report\ReportProject\bin\Debug\报表设计.EXE
+无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.Module._GetTypesInternal(StackCrawlMark& stackMark)
+   在 System.Reflection.Assembly.GetTypes()
+   在 Com.Bing.API.LoadHelper.InvokeStandard(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameter) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\LoadHelper.cs:行号 66
+   在 Com.Bing.API.Function.Invoke(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameters) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\Function.cs:行号 220
+
+2019-12-06 09:24:23
+Void .ctor(System.Exception)
+D:\temp\Com.Bing.Report\ReportProject\bin\Debug\报表设计.EXE
+无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.Module._GetTypesInternal(StackCrawlMark& stackMark)
+   在 System.Reflection.Assembly.GetTypes()
+   在 Com.Bing.API.LoadHelper.InvokeStandard(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameter) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\LoadHelper.cs:行号 66
+   在 Com.Bing.API.Function.Invoke(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameters) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\Function.cs:行号 220
+
+2019-12-06 09:41:00
+Void .ctor(System.Exception)
+D:\temp\Com.Bing.Report\ReportProject\bin\Debug\报表设计.EXE
+无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.Module._GetTypesInternal(StackCrawlMark& stackMark)
+   在 System.Reflection.Assembly.GetTypes()
+   在 Com.Bing.API.LoadHelper.InvokeStandard(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameter) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\LoadHelper.cs:行号 66
+   在 Com.Bing.API.Function.Invoke(String FileName, String Namespace, String ClassName, String ProcName, Object[] Parameters) 位置 D:\temp\Com.Bing.Report\Com.Bing.Report\API\公共函数\Function.cs:行号 220

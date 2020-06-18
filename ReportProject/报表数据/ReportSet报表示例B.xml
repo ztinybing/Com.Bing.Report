@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReportRoot id="dir" name="报表示例B" src="">
+	<ReportRoot id="dir" name="表B.1" src="">
+		<ReportRoot id="dir" name="表B.1.1" src="">
+			<Report id="file" level="2" name="表B.1.1.1" src="report表B111.rpt"/>
+			<Report id="file" level="2" name="表B.1.1.2" src="report表B112.rpt"/>
+			<Report id="file" level="2" name="表B.1.1.3" src="report表B113.rpt"/>
+		</ReportRoot>
+		<ReportRoot id="dir" name="表B.1.2" src="">
+			<Report id="file" level="2" name="表B.1.2.1" src="report表B121.rpt"/>
+			<Report id="file" level="2" name="表B.1.2.2" src="report表B122.rpt"/>
+			<Report id="file" level="2" name="表B.1.2.3" src="report表B123.rpt"/>
+		</ReportRoot>
+	</ReportRoot>
+	<ReportRoot id="dir" name="表B.2" src="">
+		<Report id="file" level="2" name="表B.2.1" src="report表B21.rpt"/>
+	</ReportRoot>
+	<ReportRoot id="dir" name="表B.3" src="">
+		<ReportRoot id="dir" name="表B.3.1" src="">
+			<Report id="file" level="2" name="表B.3.1.1" src="report表B311.rpt"/>
+			<Report id="file" level="2" name="表B.3.1.2" src="report表B312.rpt"/>
+			<Report id="file" name="表B.3.1.3" src="report表B313.rpt"/>
+		</ReportRoot>
+		<ReportRoot id="dir" name="表B.3.2" src="">
+			<Report id="file" level="2" name="表B.3.2.1" src="report表B321.rpt"/>
+			<Report id="file" level="2" name="表B.3.2.2" src="report表B322.rpt"/>
+			<Report id="file" level="2" name="表B.3.2.3" src="report表B323.rpt"/>
+		</ReportRoot>
+	</ReportRoot>
+	<ReportRoot id="dir" name="表B.4" src="">
+		<ReportRoot id="dir" name="表B.4.1" src="">
+			<Report id="file" name="表B.4.1.1" src="report表B411.rpt"/>
+			<Report id="file" name="表B.4.1.2" src="report表B412.rpt"/>
+		</ReportRoot>
+		<ReportRoot id="dir" name="表B.4.2" src="">
+			<Report id="file" level="2" name="表B.4.2.1" src="report表B421.rpt"/>
+			<Report id="file" name="表B.4.2.2" src="report表B422.rpt"/>
+		</ReportRoot>
+	</ReportRoot>
+</ReportRoot>

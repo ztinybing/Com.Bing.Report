@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ReportRoot id="dir" name="用户自定义" src="">
+  <Report id="file" name="含项目特征1" src="用户自定义\report_国标_投标人_分组工程量清单报价表_含项目特征1.rpt" />
+  <Report id="file" name="工程单价计算表3" src="用户自定义\report_国标_投标人_工程单价计算表3.rpt" />
+  <Report id="file" name="工程单价费（税）率汇总表2" src="用户自定义\report_国标_投标人_工程单价费（税）率汇总表2.rpt" />
+  <Report id="file" name="分组工程报价组成表" src="用户自定义\report_自定义_分组工程报价组成表.rpt" />
+  <Report id="file" name="分组工程报价组成表[样式二]" src="用户自定义\report_自定义_分组工程报价组成表[样式二].rpt" />
+  <Report id="file" name="分组工程量清单(招标)" src="用户自定义\report_自定义_分组工程量清单(招标).rpt" />
+  <Report id="file" name="单位工程费用汇总表" src="用户自定义\report_自定义_单位工程费用汇总表.rpt" />
+</ReportRoot>

@@ -1,0 +1,87 @@
+[DESIGN]
+d001=1
+d001001=编制说明,200,200,200,200,1,1.50,-1,宋体,-9,0,1,0.1,0.1
+d002=0
+d003=6
+d0030001=A,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,0,,,A,0
+d0030002=B,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,0,,,B,0
+d0030003=C,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,1,,,C,0
+d0030004=D,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,1,,,D,0
+d0030005=E,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,1,,,E,0
+d0030006=F,60,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,1,,,F,0
+d0040001=0
+d0040002=14
+d0040003=1
+d0040004=0
+d0040005=0
+d0040006=0
+d005=14
+d0050001=2,1,1,6,2,编制说明,宋体,18,400,,,,,,2,2,0,0,0,0
+d0050002=2,1,3,6,3,编制说明:,宋体,11,400,,,,,,0,2,0,0,0,0
+d0050003=2,1,4,6,6,[编制说明],宋体,11,400,,,,,,0,0,1,1,1,1
+d0050004=2,1,7,1,7,编制附注：,宋体,11,400,,,,,,0,2,0,0,0,0
+d0050005=2,1,8,6,10,[编制附注],宋体,11,400,,,,,,0,0,1,1,1,1
+d0050006=2,1,11,1,11,备注信息：,宋体,11,400,,,,,,0,2,0,0,0,0
+d0050007=2,1,12,6,14,[备注信息],宋体,11,400,,,,,,0,0,1,1,1,1
+d00400020001=1
+d00400020002=1
+d00400020003=1
+d00400020004=1
+d00400020005=1
+d00400020006=1
+d00400020007=1
+d00400020008=1
+d00400020009=1
+d00400020010=1
+d00400020011=1
+d00400020012=1
+d00400020013=1
+d00400020014=1
+d0050008=3,1,1,1,1,,,,,,,,,,,,1,1,1,1
+d0050009=3,2,1,2,1,,,,,,,,,,,,1,1,1,1
+d0050010=3,3,1,3,1,,,,,,,,,,,,1,1,1,1
+d0050011=3,4,1,4,1,,,,,,,,,,,,1,1,1,1
+d0050012=3,5,1,5,1,,,,,,,,,,,,1,1,1,1
+d0050013=3,6,1,6,1,,,,,,,,,,,,1,1,1,1
+d0050014=3,7,1,7,1,1,,,,,,,,,,,1,1,1,1
+[DATA]
+call usp_bzsm()
+[/DATA]
+[SQL]
+alter procedure
+usp_bzsm()
+begin
+  declare bzsm long varchar;
+  declare bzfz long varchar;
+  declare bzxx long varchar;
+  declare local temporary table temptab(
+   
+    xh integer null default
+    autoincrement,
+    col1 varchar(1) null default '',
+    col2 varchar(1) null default '',
+    xxx_flag integer not null default 0,
+    xxx_expand1_sx_ex long varchar null default '',
+    xxx_expand2_sx_ex long varchar null default '',
+    xxx_expand1 long varchar null default '',
+    xxx_expand2 long varchar null default '',
+    ) on commit delete rows;
+  select prodata_value into bzsm from prodata where prodata_dwname = 'Make_Explain_sl' and prodata_column = 'cloumn1';
+  select prodata_value into bzfz from prodata where prodata_dwname = 'Make_Explain_sl' and prodata_column = 'cloumn2';
+  select prodata_value into bzxx from prodata where prodata_dwname = 'Make_Explain_sl' and prodata_column = 'cloumn3';
+  insert into temptab(xxx_flag,xxx_expand1) values(-3,'编制说明(@@)'+bzsm);
+  insert into temptab(xxx_flag,xxx_expand1) values(-3,'编制附注(@@)'+bzfz);
+  insert into temptab(xxx_flag,xxx_expand1) values(-3,'备注信息(@@)'+bzxx);
+  select* from temptab order by xh asc;
+end
+[/SQL]
+[SQLSYNTAX]
+[/SQLSYNTAX]
+[PARAMETER]
+[/PARAMETER]
+[DESCRIBE]
+[/DESCRIBE]
+[SOURCE]
+type=rptx
+[TEMP]
+ReWrite=1

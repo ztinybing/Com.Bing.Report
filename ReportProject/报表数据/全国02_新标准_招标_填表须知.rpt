@@ -1,0 +1,69 @@
+[DESIGN]
+d001=1
+d001001=填表须知,201,201,201,201,1,1.50,-1,宋体,-11,0,1,0.1,0.1
+d002=9
+d0020001=col1
+d0020002=col2
+d0020003=col3
+d0020004=col4
+d0020005=col5
+d0020006=col6
+d0020007=col7
+d0020008=col8
+d0020009=col9
+d003=5
+d0030001=col1,18,,,400,1,0,0,0,,0,2,1,,,,,,,0
+d0030002=col2,139,,,400,1,0,0,0,,0,2,1
+d0030003=col3,146,,,400,1,0,0,0,,0,2,1
+d0030004=col4,147,,,400,1,0,0,0,,0,2,1
+d0030005=col5,18,,,400,1,0,0,0,,0,2,1,,,,,,,0
+d0040001=0
+d0040002=28
+d0040003=1
+d0040004=0
+d0040005=0
+d0040006=0
+d005=2
+d0050001=2,1,1,4,3,填 表 须 知,,-21,400,0,0,0,0,,2,2,0,0,0,0
+d0050002=2,2,4,4,28,[填表须知],,,400,0,0,0,0,,0,0,1,1,1,1,1
+
+[DATA]
+call rep_get_gcmicro();
+[/DATA]
+
+[SQL]
+alter procedure rep_get_gcmicro()
+begin
+  declare ls_zsm long varchar;
+  declare li_chandle integer;
+  declare li_xh integer;
+  declare ls_dqgc_treebm varchar(60);
+  declare ls_xmgc_treebm varchar(60);
+  declare local temporary table temptab(
+    xxx_flag integer not null default 0,
+    xxx_expand1 long varchar not null default '',
+    ) on commit delete rows;
+  set li_xh = 0;
+  set ls_zsm = '';
+   for loop1 as cur dynamic scroll cursor for
+   select ifnull(prodata_value,'',prodata_value) as value  from prodata where prodata_dwname = 'tbxz' order by prodata_id do
+  set li_xh = li_xh + 1;
+ set ls_zsm =ls_zsm +'  '+string(li_xh)+'、'+value +char(13)+char(10) ;
+  end for;
+  
+  insert into temptab(xxx_flag,xxx_expand1) values(-3,'填表须知(@@)' + ls_zsm);
+  select * from temptab
+end
+[/SQL]
+
+[SQLSYNTAX]
+[/SQLSYNTAX]
+
+[PARAMETER]
+[/PARAMETER]
+
+[DESCRIBE]
+report_国标_招标人_填表须知.htm
+[/DESCRIBE]
+[TEMP]
+ReWrite=1

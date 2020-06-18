@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{948A872C-DC06-45BC-82CA-1AB1F0FFE2FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Bing</RootNamespace>
+    <AssemblyName>Com.Bing.Report</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
+    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
+    <Reference Include="DevExpress.XtraBars.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
+    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Developer Express .NET v8.2\\Sources\DevExpress.DLL\DevExpress.XtraEditors.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Developer Express .NET v8.2\\Sources\DevExpress.DLL\DevExpress.XtraGrid.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.2.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Developer Express .NET v8.2\\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v8.2.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.CalcEngine, Version=4.0.2011.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.CalcEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Excel, Version=4.0.2011.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.PluginCalendar.WinForms, Version=4.0.2008.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.PluginCalendar.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Win, Version=4.0.2008.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Win.Spread, Version=4.0.2008.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.Win.Spread.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Win.Spread.Design, Version=4.0.2008.2005, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\FarPoint.Win.Spread.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=11.0.0.0, Culture=neutral, PublicKeyToken=6298d2d1fcfb5d85, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Enums.cs" />
+    <Compile Include="API\Structs.cs" />
+    <Compile Include="API\TreeListUtilHelper.cs" />
+    <Compile Include="API\Win32API.cs" />
+    <Compile Include="API\公共函数\Combine.cs" />
+    <Compile Include="API\公共函数\Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="API\公共函数\LoadHelper.cs" />
+    <Compile Include="API\公共函数\ProfileINI.cs" />
+    <Compile Include="API\公共函数\XmlDocumentEx.cs" />
+    <Compile Include="Business\StorageDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Business\WeakEventHandle.cs" />
+    <Compile Include="Forms\BaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseDialog.designer.cs">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CommonConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CommonConfigDialog.designer.cs">
+      <DependentUpon>CommonConfigDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExceptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExceptionDialog.designer.cs">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSelectList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSelectList.designer.cs">
+      <DependentUpon>FormSelectList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputDialog.designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModifyReportProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModifyReportProperty.designer.cs">
+      <DependentUpon>ModifyReportProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportSecondEdition\Form\EditReportData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\EditReportData.designer.cs">
+      <DependentUpon>EditReportData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\FormAdjustColOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\FormAdjustColOrder.designer.cs">
+      <DependentUpon>FormAdjustColOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\FormShowOriginalData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\FormShowOriginalData.designer.cs">
+      <DependentUpon>FormShowOriginalData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\PreviewReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\PreviewReport.designer.cs">
+      <DependentUpon>PreviewReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\ReportBatchSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\ReportBatchSet.designer.cs">
+      <DependentUpon>ReportBatchSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\ReportProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\ReportProperty.designer.cs">
+      <DependentUpon>ReportProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\SearchNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Form\SearchNode.Designer.cs">
+      <DependentUpon>SearchNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\ReportDataAnalyse\BigTextAnalyse.cs" />
+    <Compile Include="ReportSecondEdition\ReportDataAnalyse\DataAnalyse.cs" />
+    <Compile Include="ReportSecondEdition\ReportDataAnalyse\Groups.cs" />
+    <Compile Include="ReportSecondEdition\ReportData\BodyDataStruct.cs" />
+    <Compile Include="ReportSecondEdition\ReportData\BodyTextFixedPos.cs" />
+    <Compile Include="ReportSecondEdition\ReportData\MutliProjectManager.cs" />
+    <Compile Include="ReportSecondEdition\ReportData\ReportHelper.cs" />
+    <Compile Include="ReportSecondEdition\ReportData\SqliteData.cs" />
+    <Compile Include="ReportSecondEdition\ReportDesign\ColumnNameInputDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\ReportDesign\ColumnNameInputDlg.designer.cs">
+      <DependentUpon>ColumnNameInputDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\ReportDesign\DesignHelper.cs" />
+    <Compile Include="ReportSecondEdition\ReportDesign\ReportStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\ReportDesign\ReportStyle.designer.cs">
+      <DependentUpon>ReportStyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\ReportDrawStruct\CellStruct.cs" />
+    <Compile Include="ReportSecondEdition\ReportDrawStruct\IReportDraw.cs" />
+    <Compile Include="ReportSecondEdition\ReportDrawStruct\ReportCatlog.cs" />
+    <Compile Include="ReportSecondEdition\ReportDrawStruct\ReportDrawStruct.cs" />
+    <Compile Include="ReportSecondEdition\ReportException\ReportAnalyseException.cs" />
+    <Compile Include="ReportSecondEdition\ReportException\ReportIOException.cs" />
+    <Compile Include="ReportSecondEdition\ReportException\ReportOperateException.cs" />
+    <Compile Include="ReportSecondEdition\ReportException\ReportReadDataException.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\Band.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\BoundaryLine.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\DynmicColumnInfo.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\Location.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\MacrosVerbCollection.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\PrintProgress.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\PrintStyle.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\Report.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportAttribute.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportClass.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportColumn.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportColumns.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportCopyHelper.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\ReportData.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\SpecialLineInfo.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\Text.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\TextAttibute.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\Texts.cs" />
+    <Compile Include="ReportSecondEdition\ReportInfo\VBADataStyle.cs" />
+    <Compile Include="ReportSecondEdition\ReportIO\ReadOldRPT.cs" />
+    <Compile Include="ReportSecondEdition\ReportIO\WriteRPT.cs" />
+    <Compile Include="ReportSecondEdition\ReportUtil\ConvertUtil.cs" />
+    <Compile Include="ReportSecondEdition\ReportUtil\DrawUtil.cs" />
+    <Compile Include="ReportSecondEdition\UI\BatchReport.cs" />
+    <Compile Include="ReportSecondEdition\UI\PictureEditEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\UI\PrintReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\UI\PrintReportControl.designer.cs">
+      <DependentUpon>PrintReportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\UI\UIPreviewReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportSecondEdition\UI\UIPreviewReport.designer.cs">
+      <DependentUpon>UIPreviewReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSecondEdition\Unit\Unit.cs" />
+    <Compile Include="ReportSecondEdition\Unit\UnitConverter.cs" />
+    <Compile Include="ReportSecondEdition\Unit\UnitTypes.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AppearanceObjectHelper.cs" />
+    <Compile Include="UI\BaseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BaseTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\BaseTreeList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CommonConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonConfig.designer.cs">
+      <DependentUpon>CommonConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IContextMenuStrip.cs" />
+    <Compile Include="UI\RibbonEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TreeListX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="Forms\BaseDialog.resx">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CommonConfigDialog.resx">
+      <DependentUpon>CommonConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExceptionDialog.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSelectList.resx">
+      <DependentUpon>FormSelectList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModifyReportProperty.resx">
+      <DependentUpon>ModifyReportProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\EditReportData.resx">
+      <DependentUpon>EditReportData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\FormAdjustColOrder.resx">
+      <DependentUpon>FormAdjustColOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\FormShowOriginalData.resx">
+      <DependentUpon>FormShowOriginalData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\PreviewReport.resx">
+      <DependentUpon>PreviewReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\ReportBatchSet.resx">
+      <DependentUpon>ReportBatchSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\ReportProperty.resx">
+      <DependentUpon>ReportProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\Form\SearchNode.resx">
+      <DependentUpon>SearchNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\ReportDesign\ColumnNameInputDlg.resx">
+      <DependentUpon>ColumnNameInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\ReportDesign\ReportStyle.resx">
+      <DependentUpon>ReportStyle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\UI\PrintReportControl.resx">
+      <DependentUpon>PrintReportControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSecondEdition\UI\UIPreviewReport.resx">
+      <DependentUpon>UIPreviewReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonConfig.resx">
+      <DependentUpon>CommonConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TransToExcel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\backSlash.png" />
+    <Content Include="Resources\Bold.png" />
+    <Content Include="Resources\border.png" />
+    <Content Include="Resources\bottom.PNG" />
+    <Content Include="Resources\b_all.png" />
+    <Content Include="Resources\b_left.png" />
+    <Content Include="Resources\b_none.png" />
+    <Content Include="Resources\b_out_C.png" />
+    <Content Include="Resources\b_out_x.png" />
+    <Content Include="Resources\b_right.png" />
+    <Content Include="Resources\cc.png" />
+    <Content Include="Resources\center.PNG" />
+    <Content Include="Resources\ChangeOrder.png" />
+    <Content Include="Resources\CmCell.PNG" />
+    <Content Include="Resources\DeleteCol.png" />
+    <Content Include="Resources\DeleteRow.png" />
+    <Content Include="Resources\excel.png" />
+    <Content Include="Resources\fontStyle.png" />
+    <Content Include="Resources\hand.cur" />
+    <Content Include="Resources\handgrab.cur" />
+    <Content Include="Resources\InsertCol.png" />
+    <Content Include="Resources\insertRow.png" />
+    <Content Include="Resources\Italic.png" />
+    <Content Include="Resources\lc.png" />
+    <Content Include="Resources\LockCell.png" />
+    <Content Include="Resources\mCell.png" />
+    <Content Include="Resources\New.png" />
+    <Content Include="Resources\None.png" />
+    <Content Include="Resources\offline.gif" />
+    <Content Include="Resources\open.png" />
+    <Content Include="Resources\PageSetup.xml" />
+    <Content Include="Resources\PrintView.png" />
+    <Content Include="Resources\propertyChang.Image.png" />
+    <Content Include="Resources\rc.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\SaveAs.png" />
+    <Content Include="Resources\showData.png" />
+    <Content Include="Resources\ShowVisiableColumn.png" />
+    <Content Include="Resources\top.PNG" />
+    <Content Include="Resources\Underline.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dll\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

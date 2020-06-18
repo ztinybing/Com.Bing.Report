@@ -1,0 +1,320 @@
+[DESIGN]
+d001=0
+d001001=总承包费分解表,101,140,204,143,1,2.25,-1,宋体,-9,0,0,1.0,1.5
+d002=14
+d0020001=pxh
+d0020002=xh
+d0020003=node_bh
+d0020004=node_mc
+d0020005=node_dw
+d0020006=sjjj1
+d0020007=gcl
+d0020008=hjjj1
+d0020009=rowtype
+d0020010=flag2
+d0020011=level_bm
+d0020012=bz
+d0020013=bzmlid
+d0020014=gcl_exp
+d003=10
+d0030001=xh,48,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0
+d0030002=node_bh,54,,,,,,,,16777215,2,2,1,1,1,1,0,0,1,1,0,0,编号1
+d0030003=bzmlid,63,宋体,,400,0,0,0,0,,0,2,1,,,,,,0,,,,编号
+d0030004=node_mc,127,,,,,,,,16777215,0,2,1,1,1,1,1,0,0,1,0,0,工程项目及名称
+d0030005=node_dw,39,,,,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0,单位
+d0030006=gcl_exp,100,宋体,,400,0,0,0,0,,0,2,1,,,,,1,,,,,工程量计算式
+d0030007=gcl,54,,,,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0,工程量
+d0030008=sjjj1,59,,,,,,,,16777215,1,2,1,1,1,1,0,0,0,1,0,0,单价
+d0030009=hjjj1,75,,,,,,,,16777215,1,2,1,1,1,1,0,0,0,1,0,0,合计
+d0030010=bz,95,宋体,,400,0,0,0,0,,0,2,1,,,,,,,,,,备注
+d0040001=6
+d0040002=2
+d0040003=1
+d0040004=0
+d0040005=1
+d0040006=0
+d005=17
+d0050001=1,1,1,10,2,总承包费分解表,,-18,700,,,,,16777215,2,2,0,0,0,0,0,0,0,1,0,0
+d0050002=1,1,3,7,3,,,,,,,,,16777215,0,2,0,0,0,0,0,0,0,1,0,0
+d0050003=1,1,4,3,4,编号：,,,,,,,,16777215,1,2,0,0,0,0,0,0,0,1,0,0
+d0050004=5,1,1,10,1,[emunpageno],,-11,,,,,,16777215,2,1,0,0,0,0,0,0,0,1,0,0
+d0050005=2,1,1,1,2,序号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050006=2,3,1,3,2,编号,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050007=2,4,1,4,2,工程项目及名称,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050008=2,5,1,5,2,单位,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050009=2,7,1,7,2,数量,,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050010=2,8,1,8,2,单价[micro_dj_wy],,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050011=2,9,1,9,2,合价[micro_hj_wy],,,1,,,,,16777215,2,2,1,1,1,1,0,0,0,1,0,0
+d0050012=2,2,1,2,2,编号,宋体,,400,0,0,0,0,,2,2,1
+d0050013=2,10,1,10,2,备注,宋体,,400,0,0,0,0,,2,2,1
+d0050014=2,6,1,6,2,工程量计算式,宋体,,400,0,0,0,0,,2,2,1
+d0050015=1,1,5,3,5,项目名称：,,,400,0,0,0,0,,1,2,0,0,0,0
+d0050016=1,4,5,7,5,[node_mc],,,400,0,0,0,0,,0,2,0,,0,0
+d0050017=1,4,4,7,4,[node_bh],,,400,0,0,0,0,,0,2,0,1,0,0
+
+[DATA]
+execute usp_sl_0102();
+[/DATA]
+
+[SQL]
+alter procedure
+qssldl.usp_sl_0102()
+begin
+  declare @level_bm varchar(50);
+  declare @parent_levelbm varchar(50);
+  declare @flag integer;
+  declare ls_bz0 long varchar; 
+
+declare ls_nodehjjj long varchar;
+   declare ls_nodemc long varchar;
+   declare ls_nodebh varchar(32);
+   declare li_maxxh integer;
+   declare li_minxh integer;
+   declare @minpxh integer;
+   declare @maxpxh integer;
+   declare ls_bz  long varchar;
+  declare @mlidtemp varchar(32);
+
+  declare li_num integer;
+  declare li_max_pxh integer;
+  declare ls_jc varchar(12);
+  declare ls_sj varchar(12);
+  declare ls_sl varchar(12);
+  declare ls_jchj varchar(12);
+  declare ls_top_mlid varchar(128);
+  declare ls_desys varchar(32);
+  declare ls_gc_sum varchar(32);
+  declare ls_xm_round long varchar;
+  declare li_xm_dj_round integer;
+  declare li_xm_hj_round integer;
+  declare li_xm_dj_wy integer;
+  declare li_xm_hj_wy integer;
+  declare micro_hj_wy varchar(16);
+  declare micro_dj_wy varchar(16);
+  declare ls_bzdw long varchar;
+  declare ls_dbr long varchar;
+  declare ls_date long varchar;
+  
+
+  declare ls_ztb_val varchar(64);
+  declare ls_bzr varchar(64);
+  declare ll_keyid_max integer;
+  
+  select prodata_value into ls_date from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzdate';
+  set ls_date=ifnull(ls_date,'',ls_date);
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'年'),2,' 年 ');
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'月'),2,' 月 ');
+  set ls_date=stuff(ls_date,LOCATE(ls_date,'日'),2,' 日');
+  
+  select prodata_value into ls_bzdw from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzdw';
+  set ls_bzdw=ifnull(ls_bzdw,'',ls_bzdw);
+  
+  select prodata_value into ls_dbr from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'dbr';
+  set ls_dbr=ifnull(ls_dbr,'',ls_dbr);
+  select keyval into ls_xm_round from config where keyname = 'xm_round';
+  select ifnull(keyval,'',keyval) into ls_desys from config where keyname = 'jsjc';
+  
+  
+  
+  set li_xm_dj_round=2;
+  set li_xm_hj_round=2;
+  select ifnull(keyval,'',keyval) into li_xm_hj_round   from config where keyname = 'print_ztbqd_set1';
+  set li_xm_dj_wy=1;
+ 
+  if (select ifnull(keyval,'',keyval)  from config where keyname = 'print_ztbqd_set') = '1' then
+    set li_xm_hj_wy=10000
+  else
+    set li_xm_hj_wy=1
+  end if;
+  if li_xm_dj_wy = 10000 then
+    set micro_dj_wy='万元'
+  else
+    set micro_dj_wy='元'
+  end if;
+  if li_xm_hj_wy = 10000 then
+    set micro_hj_wy='万元'
+  else
+    set micro_hj_wy='元'
+  end if;
+  set @flag=0;
+  select keyval into @parent_levelbm
+    from config where keyname = 'level_bm';
+  set @parent_levelbm="left"(@parent_levelbm,5)+'%';
+  select convert(varchar(5),null) as xh,node_bh,node_mc,node_dw,sjjj1,gcl,hjjj1,rowtype,flag2,level_bm,bz,bzmlid,gcl_exp into #temp1 from
+    base_data where((rowtype = 0) or(rowtype = -100)) and length(level_bm) > 5 and level_bm like @parent_levelbm order by level_bm asc;
+  delete from #temp1 where node_mc = '总计' and rowtype=-100;
+  select number(*) as xh,level_bm into #temp2 from #temp1 where(flag2 = 0 or flag2 is null) and rowtype = 0 order by level_bm asc;
+  update #temp1 as a,#temp2 as b set a.xh = b.xh where a.level_bm = b.level_bm;
+  select number(*) as pxh,* into #temp3 from #temp1 order by level_bm asc;
+  //update #temp3 set sjjj1 = alltrim(round(sjjj1,2));
+  select max(pxh) into li_max_pxh from #temp3;
+  select level_bm into ls_top_mlid from #temp3 where pxh = 1;
+  select count(*) into li_num from base_data where LOCATE(level_bm,ls_top_mlid) = 1 and tzj is not null and trim(tzj) <> '' and ifnull(clsx,'',clsx) <> '设备';
+  if li_num > 0 and ls_desys = 'yes' then
+    select ifnull(jg1,'',jg1),ifnull(jg2,'',jg2),ifnull(xsdh,'',xsdh) into ls_jc,ls_sj,ls_sl from base_data where level_bm = ls_top_mlid;
+    set ls_jchj=alltrim(string(ls_jc*1.0+ls_sj*1.0));
+    insert into #temp3(pxh,node_mc,node_dw,hjjj1) values(li_max_pxh+1,'价差及相应税金','元',ls_jchj);
+    insert into #temp3(pxh,node_mc,node_dw,hjjj1,node_bh) values(li_max_pxh+2,'材料调整','元',ls_jc,'1');
+    select alltrim(sum(sjyl)) as yl1,node_mc,node_dw,alltrim(string(ifnull(tzj,'',tzj)*1.0-ifnull(dj,'',dj)*1.0)) as jc1,alltrim(string(round(jc1*yl1,2))) as hjjc into #temp4 from base_data where LOCATE(level_bm,ls_top_mlid) = 1 and
+      tzj is not null and trim(tzj) <> '' and ifnull(clsx,'',clsx) <> '设备' group by node_mc,node_dw,tzj,dj;
+    insert into #temp3(gcl,node_mc,node_dw,sjjj1,hjjj1,pxh)
+      select yl1,node_mc,node_dw,jc1,hjjc,number(*)+2+li_max_pxh from #temp4 order by node_mc asc;
+    insert into #temp3(pxh,node_mc,node_dw,hjjj1,gcl,node_bh) values(li_max_pxh+9999,'税金','元',ls_sj,ls_sl,'2');
+    update #temp3 set hjjj1 = alltrim(string(hjjj1*1.0+ls_jc*1.0+ls_sj*1.0)) where pxh = 1
+  end if;
+  select alltrim(string(sum(hjjj1*1.0+hjsbf1*1.0))) into ls_gc_sum from base_data where(level_bm like @parent_levelbm and flag2 > 0 and flag3 = 0);
+  
+  set ls_gc_sum=mytrim(str(ls_gc_sum/li_xm_hj_wy,18,li_xm_hj_round));
+  update #temp3 set hjjj1 = mytrim(str(hjjj1/li_xm_hj_wy,18,li_xm_hj_round)),
+    sjjj1 = mytrim(str(sjjj1/li_xm_dj_wy,18,li_xm_dj_round));
+  
+  select*,cast(0 as integer) as xxx_flag,cast(null as long varchar) as xxx_expand1,cast(null as long varchar) as xxx_expand2,cast(null as long varchar) as xxx_expand3,cast(null as long varchar) as xxx_expand1_sx_ex,cast(null as long varchar) as xxx_expand2_sx_ex into #temp4 from #temp3;
+ // insert into #temp4(xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3,pxh) values(1003,'1(@@)4(@@)合        计(@@)2(@@)400','5(@@)5(@@)'+micro_hj_wy+'(@@)2(@@)400','6(@@)10(@@)'+ls_gc_sum+'(@@)2(@@)400',99999);
+  insert into #temp4(xxx_flag,xxx_expand1,pxh) values(-3,'micro_dj_wy(@@)('+micro_dj_wy+')(&&)micro_hj_wy(@@)('+micro_hj_wy+')',0);
+  
+select prodata_value into ls_bzr from prodata where prodata_dwname = 'd_sl_fm' and prodata_column = 'bzr';
+set ls_bzr=ifnull(ls_bzr,'',ls_bzr);
+insert into
+    #temp4(pxh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000,'1,0,0,0,0,0,-1,1','1,0,0,0,0,0,-1,1','1(@@)5(@@)(@@)0(@@)400','6(@@)10(@@)(@@)0(@@)400',1002);
+select max(keyid) into ll_keyid_max  from #ztb_set;
+FOR names AS curs CURSOR FOR
+select keyid,keyname,keyval from #ztb_set order by keyid
+DO
+  
+  if keyname = 'tbr' then 
+  	set ls_ztb_val = keyval+ls_bzdw;
+  end if;
+  if keyname = 'fddbr' then 
+  	set ls_ztb_val = keyval+ls_dbr;
+  end if;
+  
+  if keyname = 'bzr' then 
+  	set ls_ztb_val = keyval+ls_bzr;
+  end if;
+  
+  
+  if keyname = 'date' then 
+  	set ls_ztb_val = ls_date;
+  end if; 
+  
+  if keyid < ll_keyid_max then
+  	insert into
+    #temp4(pxh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000+keyid,'1,0,0,0,0','1,0,0,0,0','1(@@)5(@@)(@@)0(@@)400','6(@@)10(@@)'+ls_ztb_val+'(@@)0(@@)400',1002);
+  else
+  	insert into
+    #temp4(pxh,xxx_expand1_sx_ex,xxx_expand2_sx_ex,xxx_expand1,xxx_expand2,xxx_flag) values(100000+keyid,'1,0,0,0,0,0,-1,1','1,0,0,0,0,0,-1,1','1(@@)5(@@)(@@)0(@@)400','6(@@)10(@@)'+ls_ztb_val+'(@@)0(@@)400',1002);
+  end if;  
+ 
+END FOR;
+ update  #temp4 set flag2 = '10' where pxh = '100000';
+ update #temp4 set flag2 = '0' where pxh not in ( select pxh from #temp4 where length(flag2) >=1) ; 
+--select * from #temp4 order by pxh;
+ --  select top 1 pxh into @minpxh from #temp4 where flag2 = 4 order by pxh asc;
+ --  delete  from #temp4 where pxh < @minpxh and xxx_flag <> '-3';
+ --  update #temp4 set flag2 = '99' where xxx_flag = '1002';
+   
+
+--select a.*  from #temp4 a ,#temp4 b where a.flag2 <> 0 and b.flag2 = 0 and b.pxh = a.pxh + 1 and a.pxh > 0 and a.pxh < 100000  order by a.pxh;
+
+   for mlid AS curs_mlid CURSOR FOR
+  // select bzmlid,node_mc,hjjj1,bz,pxh from #temp4 where flag2 <> 0 
+select a.bzmlid,a.node_mc,a.hjjj1,a.bz,a.pxh  from #temp4 a ,#temp4 b where a.flag2 <> 0 and b.flag2 = 0 and b.pxh = a.pxh + 1 and a.pxh > 0 and a.pxh < 100000  order by a.pxh   
+do 
+        set ls_nodebh = bzmlid;
+        set ls_nodemc = ifnull(node_mc,' ',node_mc);
+        set ls_nodehjjj = ifnull(hjjj1,' ',hjjj1);
+        
+        set ls_bz0 = ifnull(bz,'',bz);
+        set @minpxh = pxh;
+        select top 1 pxh into @maxpxh from #temp4 where pxh > @minpxh and flag2 <> 0 order by pxh;
+       set @mlidtemp = bzmlid + '%'; 
+
+         if locate(ls_bz0,'总',1) <=0  then        
+
+            delete from #temp4 where pxh > @minpxh and pxh <@maxpxh and xxx_flag <> -3;
+               // if @minpxh = 17 then
+               //       select top 1 pxh  from #temp4 where pxh > @minpxh and flag2 <> 0  order by pxh;
+               // end if ;
+         else
+             //select min(pxh) into li_minxh from #temp4 where bzmlid like @mlidtemp;
+             //select max(pxh) into li_maxxh from #temp4 where bzmlid like @mlidtemp;
+             
+             set li_minxh = @minpxh;  
+             set li_maxxh = @maxpxh;            
+
+             //update #temp4 set pxh = pxh + 1 where pxh >= li_minxh and pxh <= 99999;
+             insert into #temp4 (pxh,xxx_flag,Xxx_Expand1) values(li_minxh,-3,'node_bh(@@)'+ls_nodebh);   
+             insert into #temp4 (pxh,xxx_flag,Xxx_expand1) values(li_minxh,-3,'node_mc(@@)'+ls_nodemc) ;        
+             insert into #temp4 (pxh,xxx_flag,xxx_expand1,xxx_expand2,xxx_expand3) values(li_maxxh,1003,'1(@@)4(@@)合        计(@@)2(@@)400','5(@@)5(@@)'+micro_hj_wy+'(@@)2(@@)400','6(@@)10(@@)'+ls_nodehjjj +'(@@)2(@@)400');
+             //insert into #temp4 (pxh,xxx_flag) values ( li_maxxh + 2 ,'-1');   
+         end if;        
+   end for; 
+
+ delete from #temp4 where flag2 =2 or flag2=3 or flag2 = 4;  
+  
+  insert into #temp4(xxx_flag,pxh) values(-1,100040);
+  select* from #temp4 order by pxh asc;
+  if @flag = 1 then
+    select '' as node_bh,'' as node_mc,'' as node_dw,'' as sjjj1,'' as gcl,'' as hjjj1,'' as gcl_exp from
+      dummy where 1 = 2
+  end if
+end
+[/SQL]
+
+[SQLSYNTAX]
+[/SQLSYNTAX]
+
+[PARAMETER]
+P000=4
+P001000=单价保留小数位数
+P001001=dj_round
+P001002=单价保留小数位数
+P001003=1
+P001004=2
+P001005000=5
+P001005001A=0
+P001005001B=取整
+P001005002A = 1
+P001005002B =保留1位
+P001005003A=2
+P001005003B=保留2位
+P001005004A=3
+P001005004B=保留3位
+P001005005A=4
+P001005005B=保留4位
+
+
+P002000=单价按万元
+P002001=dj_wy
+P002002=单价按万元
+P002003=2
+P002004=0
+
+
+P003000=合价保留小数位数
+P003001=hj_round
+P003002=合价保留小数位数
+P003003=1
+P003004=2
+P003005000=5
+P003005001A=0
+P003005001B=取整
+P003005002A = 1
+P003005002B =保留1位
+P003005003A=2
+P003005003B=保留2位
+P003005004A=3
+P003005004B=保留3位
+P003005005A=4
+P003005005B=保留4位
+
+
+P004000=合价按万元
+P004001=hj_wy
+P004002=合价按万元
+P004003=2
+P004004=0
+[/PARAMETER]
+
+[DESCRIBE]
+[/DESCRIBE]

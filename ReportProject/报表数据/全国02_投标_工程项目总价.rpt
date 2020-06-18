@@ -1,0 +1,150 @@
+[DESIGN]
+d001=0
+d001001=工程项目总价表,110,110,123,123,1,2.25,-1,宋体,-9,0,0,1.0,1.5
+d002=3
+d0020001=pxh
+d0020002=xh
+d0020003=xmmc
+d003=4
+d0030001=xh,83,,,400,0,0,0,0,,2,2,1,1,1,1,0,0,0,0,,,序号,0
+d0030002=xmmc,175,,,400,0,0,0,0,,0,2,1,1,1,1,0,0,0,0,,,工程项目名称,0
+d0030003=hj,74,,,400,0,0,0,0,,1,2,1,1,1,1,0,0,0,0,,,金额,0
+d0030004=bz,100,,,400,0,0,0,0,,0,2,1,1,1,1,0,0,0,0,0,0,备注,0
+d005=21
+d0050001=1,1,1,4,2,工程项目总价表,宋体,18,700,,,,,,2,2,0,0,0,0
+d0050002=1,1,3,3,3,合同编号：[合同编号],宋体,9,400,,,,,,0,1,0,0,0,0
+d0050003=1,1,4,3,4,[macroGcName],宋体,9,400,,,,,,0,1,0,0,0,0
+d0050004=1,4,4,4,4,第 [pageno] 页 共 [pagecount] 页,宋体,9,400,,,,,,1,2,0,0,0,0
+d0050005=2,1,1,1,2,序号,宋体,9,400,,,,,,2,2,1,1,1,1
+d0050006=2,2,1,2,2,工程项目名称,宋体,9,400,,,,,,2,2,1,1,1,1
+d0050007=2,3,1,3,2,金额（元）,宋体,9,400,,,,,,2,2,1,1,1,1
+d0050008=2,4,1,4,2,备注,宋体,9,400,,,,,,2,2,1,1,1,1
+d0050009=5,2,1,2,1,投         标         人：,宋体,9,400,,,,,,2,2,0,0,0,0
+d0050010=5,3,1,4,1,(盖章单位),宋体,9,400,,,,,,2,2,0,1,0,0
+d0050011=5,2,2,2,2,法定代表人（授权代理人）：,宋体,9,400,,,,,,2,2,0,0,0,0
+d0050012=5,3,2,4,2,(签       字),宋体,9,400,,,,,,2,2,0,1,0,0
+d0050013=5,3,3,4,3,[marco_date],宋体,9,400,,,,,,2,2,0,0,0,0
+d0040001=4
+d0040002=2
+d0040003=0
+d0040004=0
+d0040005=3
+d0040006=0
+d00400010001=1
+d00400010002=1
+d00400010003=1
+d00400010004=1
+d00400020001=1
+d00400020002=1
+d00400050001=1
+d00400050002=1
+d00400050003=1
+d0050014=3,1,1,1,1,,,,,,,,,,0,,1,1,1,1
+d0050015=3,2,1,2,1,,,,,,,,,,0,,1,1,1,1
+d0050016=3,3,1,3,1,,,,,,,,,,1,,1,1,1,1
+d0050017=3,4,1,4,1,,,,,,,,,,2,,1,1,1,1
+d0050018=3,5,1,5,1,1,,,,,,,,,,,1,1,1,1
+d0050019=3,1,2,2,2,合计,,,,,,,,,2,,1,1,1,1
+d0050020=3,3,2,4,2,,,,,,,,,,1,,1,1,1,1
+d0050021=3,5,2,5,2,1003,,,,,,,,,,,1,1,1,1
+[DATA]
+execute usp_sl_0101();
+[/DATA]
+[SQL]
+alter procedure
+qssldl.usp_sl_0101()
+begin
+  declare cmlid long varchar;
+  declare cmlid1 long varchar;
+  declare cmlid2 long varchar;
+  
+  declare ls_xmmc long varchar;
+  declare ls_fyval long varchar;
+  declare ls_fyval1 long varchar;
+  declare ls_fyval2 long varchar;
+  declare ls_fyval3 long varchar;
+  declare li_count integer;
+  declare li_handle integer;
+  declare li_lbdh integer;
+  
+  declare ls_jc varchar(12);
+  declare ls_sj varchar(12);
+  declare ls_sl varchar(12);
+  declare ls_jchj varchar(12);
+declare ls_ztb_val varchar(64);
+  declare ls_bzr varchar(64);
+  declare ll_keyid_max integer;
+  declare local temporary table temptab(
+    pxh integer null default autoincrement,
+    xh varchar(16) null default '',
+    xmmc varchar(128) null default '',
+    jagcf varchar(128) null default '',
+    sbgzf varchar(128) null default '',
+    dlf varchar(128) null default '',
+    hj varchar(128) null default '',
+    bfl varchar(128) null default '',
+    xxx_flag integer null default 0,
+    xxx_expand1 long varchar default '',
+    xxx_expand2 long varchar default '',
+    xxx_expand1_sx_ex long varchar default '',
+    xxx_expand2_sx_ex long varchar default '',
+    bz long varchar default '',
+    ) on commit delete rows;
+  declare ls_xm_round long varchar;
+  declare li_xm_dj_round integer;
+  declare li_xm_hj_round integer;
+  declare li_xm_dj_wy integer;
+  declare li_xm_hj_wy integer;
+  declare micro_hj_wy varchar(16);
+  declare micro_dj_wy varchar(16);
+declare ls_bzdw long varchar;
+  declare ls_dbr long varchar;
+  declare ls_date long varchar;
+  
+  
+select level_bm into cmlid from base_data where locate(node_type,'node_type=分类分项项目') > 0  ;
+select level_bm into cmlid1 from base_data where locate(node_type,'node_type=措施项目')> 0  ;
+select level_bm into cmlid2 from base_data where locate(node_type,'node_type=其他项目') > 0 ;  
+  
+  insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+  select node_mc,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00+hjzcf1*1.00)),'一',bz from base_data where  level_bm = cmlid;
+  insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+    select node_mc ,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00++hjzcf1*1.00)),''+bzmlid,bz from base_data where(locate(level_bm,cmlid) = 1 and flag2 > 0 and flag3=0 )  order by level_bm;  
+insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+  select node_mc,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00+hjzcf1*1.00)),'二',bz from base_data where level_bm = cmlid1;
+  insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+    select node_mc ,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00+hjzcf1*1.00)),''+bzmlid,bz from base_data where(locate(level_bm,cmlid1) = 1 and flag2 > 0 and flag3=0 )  order by level_bm;  
+    
+    insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+  select node_mc,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00+hjzcf1*1.00)),'三',bz from base_data where level_bm = cmlid2;
+  insert into temptab(xmmc,jagcf,sbgzf,hj,xh,bz)
+    select  node_mc ,hjjj1,hjsbf1,alltrim(string(hjjj1*1.00+hjsbf1*1.00+hjzcf1*1.00)),''+bzmlid,bz from base_data where(locate(level_bm,cmlid2) = 1 and flag2 > 0 and flag3=0 )  order by level_bm;  
+    
+   insert into temptab(xxx_flag,xmmc,jagcf,sbgzf,hj)
+    select 1000, ' 合计',sum(jagcf),sum(sbgzf),sum(hj) from temptab where xh in('一','二','三') ;
+  
+   update temptab set jagcf = alltrim(jagcf),
+    sbgzf = alltrim(sbgzf),
+    hj = alltrim(hj);
+   
+  insert into temptab(xxx_flag,pxh,xh) values(-1,100040,'0');
+	select* from temptab order by pxh asc;
+end
+[/SQL]
+[SQLSYNTAX]
+[/SQLSYNTAX]
+[PARAMETER]
+[报表参数]
+desc=报表参数
+enabled=1
+count=3
+1=打印工程名称,L(项目名称),项目名称,标段名称,项目名称+标段名称
+2=打印级别,L(一级),一级,二级,三级,全部
+3=打印金额为空项目,R(True)
+[/PARAMETER]
+[DESCRIBE]
+[/DESCRIBE]
+[SOURCE]
+type=rptx
+[TEMP]
+ReWrite=1

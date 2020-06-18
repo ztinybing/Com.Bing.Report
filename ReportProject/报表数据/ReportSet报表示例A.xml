@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportRoot id="dir" name="示例A" src="">
+	<ReportRoot id="dir" name="A.1" src="">
+		<Report id="file" level="2" name="A表1.1" src="A11.rpt" />			
+		<Report id="file" level="2" name="A表1.2" src="A12.rpt" />
+		<Report id="file" level="2" name="A表1.3" src="A13.rpt" />	
+		<Report id="file" name="A表1.4" src="A14.rpt" />	
+	    <Report id="file" name="A表1.5" src="A15.rpt" />	
+	</ReportRoot>
+	<ReportRoot id="dir" name="A.2" src="">			
+		<Report id="file" name="A表2.1" src="A21.rpt" />
+		<Report id="file" name="A表2.2" src="A22.rpt" />
+		<Report id="file" name="A表2.3" src="A23.rpt" />	
+	</ReportRoot>
+	<ReportRoot id="dir" name="A.3" src="">					
+		<Report id="file" name="A表3.1" src="A31.rpt" />
+		<Report id="file" name="A表3.2" src="A32.rpt" />
+		<Report id="file" name="A表3.3" src="A33.rpt" />
+	</ReportRoot>
+</ReportRoot>
